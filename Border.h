@@ -45,7 +45,11 @@ class Border
     // =======================================================================
     //                               Constructors
     // =======================================================================
-    //Border(int, int, int, int);
+    // Create a border by giving its type, the coordinates of a 1st point and
+    // the needed coordinate of the second to define the segment, depending on
+    // whether it is a vertical or horizontal line
+    // The type can be 0 (upper), 1 (lower), 2 (right) or 3 (left)
+    Border(int type, int new_x1, int new_y1, int new_c2, unsigned int new_color);
 
     // =======================================================================
     //                                Destructor
@@ -55,6 +59,9 @@ class Border
     // =======================================================================
     //                            Accessors: getters
     // =======================================================================
+    // Gives the two points defining the border segment, in a 4-ints array
+    inline int* get_points();
+    inline unsigned int get_color();
 
     // =======================================================================
     //                            Accessors: setters
@@ -102,12 +109,44 @@ class Border
     //                             Protected Attributes
     // =======================================================================
     int orientation, x1, y1, c2;
+    unsigned int color;
 };
 
 
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
+int* Border::get_points()
+{
+    int* res = new int [4];
+    
+    // First point
+    res[0] = x1;
+    res[1] = y1;
+
+    // Second point
+
+    // If we have an horizontal line
+    if (orientation <= 1)
+    {
+        res[2] = c2;
+        res[3] = y1;
+    }
+    // If we have a vertical line
+    else
+    {
+        res[2] = x1;
+        res[3] = c2;
+    }
+
+    return res;
+
+}
+
+unsigned int Border::get_color()
+{
+    return color;
+}
 
 // ===========================================================================
 //                              Setters' definitions
