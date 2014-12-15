@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "bwindow.h"
+#include "Border.h"
 
 
 int main()
