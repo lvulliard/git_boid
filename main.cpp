@@ -1,5 +1,13 @@
+// Std lib
 #include <stdio.h>
+
+// Graphic lib
 #include "bwindow.h"
+
+// Boid struct
+#include "Obstacle.h"
+
+// Boid classes
 #include "Border.h"
 
 
