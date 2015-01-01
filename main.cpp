@@ -10,6 +10,7 @@
 
 // Boid classes
 #include "Border.h"
+#include "Agent.h"
 
 
 int main()
@@ -17,6 +18,24 @@ int main()
     bwindow win(640,480);
     printf("%d\n",win.init());
     win.map();
+
+    // Obj declarations
+    Agent* a2 = new Agent('c','b');
+	Agent a1(5,3);
+
+	Border* b1 = new Border(0, 20, 20, 450, 0xDD0000);
+
+    Obstacle obs1;
+	obs1.x = 30;
+	obs1.y = 450;
+	obs1.r = 28;
+
+   	Obstacle obs2;
+	obs2.x = 300;
+	obs2.y = 450;
+	obs2.r = 10;
+
+	// Paint loop
     for(;;)
     {
 		int ev = win.parse_event();
@@ -42,21 +61,16 @@ int main()
 		win.draw_square(200,200,220,220,0xFF00);
 		win.draw_fsquare(400,400,440,440,0xFF00);
 
-	    Border* b1 = new Border(0, 20, 20, 450, 0xDD0000);
-
+	    
 	    // This script will be the method used to draw a border
 	    // Begin here
 	    
 	    int* bordPoints = new int [4];
 	    bordPoints = b1->get_points();
 	    win.draw_line(bordPoints[0], bordPoints[1], bordPoints[2], bordPoints[3], b1->get_color());
+		delete bordPoints;
 
 	    // End here
-
-	    Obstacle obs1;
-		obs1.x = 30;
-		obs1.y = 450;
-		obs1.r = 28;
 
 	    // This script will be the method used to draw an obstacle
 	    // Begin here
@@ -66,11 +80,6 @@ int main()
 		}
 
 	    // End here
-
-	   	Obstacle obs2;
-		obs2.x = 300;
-		obs2.y = 450;
-		obs2.r = 10;
 
 	    // This script will be the method used to draw an obstacle
 	    // Begin here
@@ -82,14 +91,14 @@ int main()
 	    // End here
 
 
-	    delete bordPoints;
-	    delete b1;
+		
+
 
     }
 
+	printf("x %f, y %f, dx %f, dy %f, color %d", a1.get_x(), a1.get_y(), a1.get_dx(), a1.get_dy(), a1.get_color());
 
-
-
+    delete b1;
 
     return 0;
 }
