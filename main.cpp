@@ -1,5 +1,6 @@
 // Std lib
 #include <stdio.h>
+#include <math.h>
 
 // Graphic lib
 #include "bwindow.h"
@@ -34,7 +35,7 @@ int main()
 		}
 
 		int i;
-		for(i=0;i<200;i++)
+		for(i=0; i<200; i++)
 			win.draw_point(i,88,0xFF00);
 		win.draw_line(100,100,200,200,0xFF0000);
 		win.draw_text(10,10,0x0,"Hello World",strlen("Hello World"));
@@ -51,6 +52,35 @@ int main()
 	    win.draw_line(bordPoints[0], bordPoints[1], bordPoints[2], bordPoints[3], b1->get_color());
 
 	    // End here
+
+	    Obstacle obs1;
+		obs1.x = 30;
+		obs1.y = 450;
+		obs1.r = 28;
+
+	    // This script will be the method used to draw an obstacle
+	    // Begin here
+		for(i=0; i<360; i += round(300/obs1.r))
+		{
+			win.draw_point(round(obs1.x +(obs1.r)*cos(i*0.017453)), round(obs1.y + (obs1.r)*sin(i*0.017453)), 0);
+		}
+
+	    // End here
+
+	   	Obstacle obs2;
+		obs2.x = 300;
+		obs2.y = 450;
+		obs2.r = 10;
+
+	    // This script will be the method used to draw an obstacle
+	    // Begin here
+		for(i=0; i<360; i += round(300/obs2.r))
+		{
+			win.draw_point(round(obs2.x +(obs2.r)*cos(i*0.017453)), round(obs2.y + (obs2.r)*sin(i*0.017453)), 0);
+		}
+
+	    // End here
+
 
 	    delete bordPoints;
 	    delete b1;
