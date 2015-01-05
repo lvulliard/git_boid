@@ -1,13 +1,13 @@
 //****************************************************************************
 //
-//                                    Agent
+//                                    Hunter
 //
 //****************************************************************************
 
 
 
-#ifndef __Agent_H__
-#define __Agent_H__
+#ifndef __Hunter_H__
+#define __Hunter_H__
 
 
 // ===========================================================================
@@ -15,6 +15,7 @@
 // ===========================================================================
 #include <cstdio>
 #include <cstdlib>
+#include "Agent.h"
 
 
 // ===========================================================================
@@ -33,7 +34,7 @@
 
 
 
-class Agent
+class Hunter : public Agent
 {
   public :
     
@@ -44,22 +45,16 @@ class Agent
     // =======================================================================
     //                               Constructors
     // =======================================================================
-    Agent(double x, double y);
-    Agent(double x, double y, unsigned int c);
+    Hunter(double x, double y);
 
     // =======================================================================
     //                                Destructor
     // =======================================================================
-    virtual ~Agent(void);
+    virtual ~Hunter(void);
 
     // =======================================================================
     //                            Accessors: getters
     // =======================================================================
-    inline double get_x () const;
-    inline double get_dx () const;
-    inline double get_y () const;
-    inline double get_dy () const;
-    inline unsigned int get_color () const;
 
     // =======================================================================
     //                            Accessors: setters
@@ -86,17 +81,6 @@ class Agent
     // =======================================================================
     //                            Forbidden Constructors
     // =======================================================================
-    Agent(void)
-    {
-      printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
-      exit(EXIT_FAILURE);
-    };
-
-    Agent(const Agent &model)
-    {
-      printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
-      exit(EXIT_FAILURE);
-    };
 
 
     // =======================================================================
@@ -106,38 +90,13 @@ class Agent
     // =======================================================================
     //                             Protected Attributes
     // =======================================================================
-    unsigned int color;
-    double x, y, dx, dy;
+
 };
 
 
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
-double Agent::get_x() const
-{
-    return x;
-}
-
-double Agent::get_y() const
-{
-    return y;
-}
-
-double Agent::get_dx() const
-{
-    return dx;
-}
-
-double Agent::get_dy() const
-{
-    return dy;
-}
-
-unsigned int Agent::get_color() const
-{
-    return color;
-}
 
 // ===========================================================================
 //                              Setters' definitions
@@ -152,5 +111,5 @@ unsigned int Agent::get_color() const
 // ===========================================================================
 
 
-#endif // __Agent_H__
+#endif // __Hunter_H__
 

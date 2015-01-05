@@ -11,6 +11,8 @@
 // Boid classes
 #include "Border.h"
 #include "Agent.h"
+#include "Prey.h"
+#include "Hunter.h"
 
 
 int main()
@@ -20,9 +22,11 @@ int main()
     win.map();
 
     // Obj declarations
-	Agent a1(5,3);
+	Prey p1(5,3);
+	Agent a1(2,4);
+	Hunter h1(1,5);
 
-	Border* b1 = new Border(0, 20, 20, 450, 0xDD0000);
+	Border* b1 = new Border(0, 20, 20, 450, 0xBB0000);
 
     Obstacle obs1;
 	obs1.x = 30;
@@ -34,7 +38,9 @@ int main()
 	obs2.y = 450;
 	obs2.r = 10;
 
-	printf("x %f, y %f, dx %f, dy %f, color %d\n", a1.get_x(), a1.get_y(), a1.get_dx(), a1.get_dy(), a1.get_color());
+	printf("a1 : x %f, y %f, dx %f, dy %f, color %d\n", a1.get_x(), a1.get_y(), a1.get_dx(), a1.get_dy(), a1.get_color());
+	printf("p1 : x %f, y %f, dx %f, dy %f, color %d\n", p1.get_x(), p1.get_y(), p1.get_dx(), p1.get_dy(), p1.get_color());
+	printf("h1 : x %f, y %f, dx %f, dy %f, color %d\n", h1.get_x(), h1.get_y(), h1.get_dx(), h1.get_dy(), h1.get_color());
 
 	// Paint loop
     for(;;)

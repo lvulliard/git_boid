@@ -43,6 +43,15 @@ Agent::Agent(double x, double y)
     color = 0;
 }
 
+Agent::Agent(double x, double y, unsigned int c)
+{
+    this->x = x;
+    this->y = y;
+    dx = 0;
+    dy = 0;
+    color = c;
+}
+
 // ===========================================================================
 //                                  Destructor
 // ===========================================================================
