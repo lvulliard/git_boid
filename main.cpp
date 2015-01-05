@@ -5,6 +5,9 @@
 // Graphic lib
 #include "bwindow.h"
 
+// Constants
+#include "DefVal.h"
+
 // Boid struct
 #include "Obstacle.h"
 
@@ -13,6 +16,7 @@
 #include "Agent.h"
 #include "Prey.h"
 #include "Hunter.h"
+#include "Scene.h"
 
 
 int main()
@@ -65,6 +69,7 @@ int main()
 		int i;
 		for(i=0; i<200; i++)
 			win.draw_point(i,88,0xFF00);
+
 		win.draw_line(100,100,200,200,0xFF0000);
 		win.draw_text(10,10,0x0,"Hello World",strlen("Hello World"));
 		win.draw_square(200,200,220,220,0xFF00);

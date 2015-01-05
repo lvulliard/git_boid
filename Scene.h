@@ -1,13 +1,13 @@
 //****************************************************************************
 //
-//                                    Agent
+//                                    Scene
 //
 //****************************************************************************
 
 
 
-#ifndef __Agent_H__
-#define __Agent_H__
+#ifndef __Scene_H__
+#define __Scene_H__
 
 
 // ===========================================================================
@@ -20,7 +20,10 @@
 // ===========================================================================
 //                                Project Files
 // ===========================================================================
-
+#include "Agent.h"
+#include "Border.h"
+#include "Obstacle.h"
+#include "DefVal.h"
 
 
 
@@ -33,7 +36,7 @@
 
 
 
-class Agent
+class Scene
 {
   public :
     
@@ -44,21 +47,15 @@ class Agent
     // =======================================================================
     //                               Constructors
     // =======================================================================
-    Agent(double x, double y, unsigned int c);
-
+    Scene();
     // =======================================================================
     //                                Destructor
     // =======================================================================
-    virtual ~Agent(void);
+    virtual ~Scene(void);
 
     // =======================================================================
     //                            Accessors: getters
     // =======================================================================
-    inline double get_x () const;
-    inline double get_dx () const;
-    inline double get_y () const;
-    inline double get_dy () const;
-    inline unsigned int get_color () const;
 
     // =======================================================================
     //                            Accessors: setters
@@ -71,8 +68,7 @@ class Agent
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    virtual void move() =0;
-    virtual void set_speed() = 0;
+
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -86,17 +82,17 @@ class Agent
     // =======================================================================
     //                            Forbidden Constructors
     // =======================================================================
-    Agent(void)
+    /*Scene(void)
     {
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
-    };
+    };*/
 
-    Agent(const Agent &model)
+    /*Scene(const Scene &model)
     {
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
-    };
+    };*/
 
 
     // =======================================================================
@@ -106,41 +102,21 @@ class Agent
     // =======================================================================
     //                             Protected Attributes
     // =======================================================================
-    //
-    unsigned int color, state;
-    // Agent view range "r"
-    // Hitbox sometimes called "c"
-    double x, y, dx, dy, r, hitbox;
+    // Constants
+    const unsigned int MAX_WIDTH, MAX_HEIGHT, NB_BORDERS, NB_MAX_PREY, NB_MAX_HUNT;
+    // Parameters
+    unsigned int nb_prey, nb_borders, nb_hunt;
+    double gamma1, gamma2, gamma3, gamma4, mu;
+    // Objects
+    Agent* agents;
+    Border* borders;
+    Obstacle* obstacles;
 };
 
 
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
-double Agent::get_x() const
-{
-    return x;
-}
-
-double Agent::get_y() const
-{
-    return y;
-}
-
-double Agent::get_dx() const
-{
-    return dx;
-}
-
-double Agent::get_dy() const
-{
-    return dy;
-}
-
-unsigned int Agent::get_color() const
-{
-    return color;
-}
 
 // ===========================================================================
 //                              Setters' definitions
@@ -155,5 +131,5 @@ unsigned int Agent::get_color() const
 // ===========================================================================
 
 
-#endif // __Agent_H__
+#endif // __Scene_H__
 
