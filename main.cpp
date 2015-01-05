@@ -20,7 +20,6 @@ int main()
     win.map();
 
     // Obj declarations
-    Agent* a2 = new Agent('c','b');
 	Agent a1(5,3);
 
 	Border* b1 = new Border(0, 20, 20, 450, 0xDD0000);
@@ -34,6 +33,8 @@ int main()
 	obs2.x = 300;
 	obs2.y = 450;
 	obs2.r = 10;
+
+	printf("x %f, y %f, dx %f, dy %f, color %d\n", a1.get_x(), a1.get_y(), a1.get_dx(), a1.get_dy(), a1.get_color());
 
 	// Paint loop
     for(;;)
@@ -95,8 +96,6 @@ int main()
 
 
     }
-
-	printf("x %f, y %f, dx %f, dy %f, color %d", a1.get_x(), a1.get_y(), a1.get_dx(), a1.get_dy(), a1.get_color());
 
     delete b1;
 
