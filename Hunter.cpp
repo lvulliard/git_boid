@@ -38,6 +38,10 @@ Hunter::Hunter(double x, double y) : Agent(x,y,0xFF0000)
 {
 }
 
+Hunter::Hunter(double x, double y, unsigned int c) : Agent(x,y,c)
+{
+}
+
 // ===========================================================================
 //                                  Destructor
 // ===========================================================================

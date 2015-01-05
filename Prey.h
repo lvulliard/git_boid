@@ -46,6 +46,7 @@ class Prey : public Agent
     //                               Constructors
     // =======================================================================
     Prey(double x, double y);
+    Prey(double x, double y, unsigned int c);
 
     // =======================================================================
     //                                Destructor

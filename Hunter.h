@@ -46,6 +46,7 @@ class Hunter : public Agent
     //                               Constructors
     // =======================================================================
     Hunter(double x, double y);
+    Hunter(double x, double y, unsigned int c);
 
     // =======================================================================
     //                                Destructor
