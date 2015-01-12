@@ -17,8 +17,7 @@
 //                                 Project Files
 // ===========================================================================
 #include "Border.h"
-
-
+#include "DefVal.h"
 
 
 //############################################################################
@@ -41,6 +40,17 @@ Border::Border(int type, int new_x1, int new_y1, int new_c2, unsigned int new_co
 	y1 = new_y1;
 	c2 = new_c2;
 	color = new_color;
+	strength = DefVal::BORDER_STRENGTH;
+}
+
+Border::Border(int type, int new_x1, int new_y1, int new_c2)
+{
+	orientation = type;
+	x1 = new_x1;
+	y1 = new_y1;
+	c2 = new_c2;
+	color = DefVal::BORDER_COLOR;
+	strength = DefVal::BORDER_STRENGTH;
 }
 
 // ===========================================================================

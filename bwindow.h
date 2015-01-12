@@ -1,3 +1,6 @@
+#ifndef __BWINDOW_H__
+#define __BWINDOW_H__
+
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/Xos.h>
@@ -88,3 +91,5 @@ class bwindow
     unsigned int get_height();
 
 };
+
+#endif

@@ -1,6 +1,15 @@
 // Std lib
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
+#include <ctime>
+
+// For Linux/Mac
+#include <unistd.h>
+
+// For Windows
+// #include <windows.h>
+// You also need to replace "sleep()" by "Sleep()"
 
 // Graphic lib
 #include "bwindow.h"
@@ -21,9 +30,11 @@
 
 int main()
 {
-    bwindow win(640,480);
+    bwindow win(DefVal::WINDOW_WIDTH,DefVal::WINDOW_HEIGHT);
     printf("%d\n",win.init());
     win.map();
+
+    int i;
 
     // Obj declarations
 	Prey p1(5,3);
@@ -43,16 +54,31 @@ int main()
 	obs2.y = 450;
 	obs2.r = 10;
 
-	printf("p1 : x %f, y %f, dx %f, dy %f, color %d\n", p1.get_x(), p1.get_y(), p1.get_dx(), p1.get_dy(), p1.get_color());
-	printf("h1 : x %f, y %f, dx %f, dy %f, color %d\n", h1.get_x(), h1.get_y(), h1.get_dx(), h1.get_dy(), h1.get_color());
-	printf("p2 : x %f, y %f, dx %f, dy %f, color %d\n", p2.get_x(), p2.get_y(), p2.get_dx(), p2.get_dy(), p2.get_color());
-	printf("h2 : x %f, y %f, dx %f, dy %f, color %d\n", h2.get_x(), h2.get_y(), h2.get_dx(), h2.get_dy(), h2.get_color());
+	//printf("p1 : x %f, y %f, dx %f, dy %f, color %d\n", p1.get_x(), p1.get_y(), p1.get_dx(), p1.get_dy(), p1.get_color());
+	//printf("h1 : x %f, y %f, dx %f, dy %f, color %d\n", h1.get_x(), h1.get_y(), h1.get_dx(), h1.get_dy(), h1.get_color());
+	//printf("p2 : x %f, y %f, dx %f, dy %f, color %d\n", p2.get_x(), p2.get_y(), p2.get_dx(), p2.get_dy(), p2.get_color());
+	//printf("h2 : x %f, y %f, dx %f, dy %f, color %d\n", h2.get_x(), h2.get_y(), h2.get_dx(), h2.get_dy(), h2.get_color());
+
+	// Scene declaration
+	Scene* s1 = new Scene ();
+
+	// Add borders
+	s1->addBorder(0,20,20,(DefVal::WINDOW_WIDTH)-20);
+	s1->addBorder(1,20,(DefVal::WINDOW_HEIGHT)-20,(DefVal::WINDOW_WIDTH)-20);
+	s1->addBorder(2,(DefVal::WINDOW_WIDTH)-20,(DefVal::WINDOW_HEIGHT)-20,20);
+	s1->addBorder(3,20,(DefVal::WINDOW_HEIGHT)-20,20);
+
+	// Add obstacles
+
 
 	// Paint loop
     for(;;)
     {
 		int ev = win.parse_event();
-		switch(ev)
+		usleep(30000); // time step in microseconds
+		s1->draw(win);
+		//must be >10ms (depending on the system)
+		/*switch(ev)
 		{
 		    case BKPRESS :
 			printf("keypressed\n"); 
@@ -64,25 +90,21 @@ int main()
 			printf("expose\n"); break;
 		    case BCONFIGURE:
 			printf("configure\n"); break;
-		}
+		}*/
 
-		int i;
-		for(i=0; i<200; i++)
-			win.draw_point(i,88,0xFF00);
-
-		win.draw_line(100,100,200,200,0xFF0000);
+		/*win.draw_line(100,100,200,200,0xFF0000);
 		win.draw_text(10,10,0x0,"Hello World",strlen("Hello World"));
 		win.draw_square(200,200,220,220,0xFF00);
-		win.draw_fsquare(400,400,440,440,0xFF00);
+		win.draw_fsquare(400,400,440,440,0xFF00);*/
 
 	    
 	    // This script will be the method used to draw a border
 	    // Begin here
 	    
-	    int* bordPoints = new int [4];
+	    /*int* bordPoints = new int [4];
 	    bordPoints = b1->get_points();
 	    win.draw_line(bordPoints[0], bordPoints[1], bordPoints[2], bordPoints[3], b1->get_color());
-		delete bordPoints;
+		delete bordPoints;*/
 
 	    // End here
 
@@ -103,10 +125,6 @@ int main()
 		}
 
 	    // End here
-
-
-		
-
 
     }
 

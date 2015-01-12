@@ -24,6 +24,7 @@
 #include "Border.h"
 #include "Obstacle.h"
 #include "DefVal.h"
+#include "bwindow.h"
 
 
 
@@ -68,7 +69,11 @@ class Scene
     // =======================================================================
     //                              Public Methods
     // =======================================================================
+    // Add a Border to the scene
+    void addBorder(int type, int x1, int y1, int c2);
 
+    // Draw the content of the scene
+    void draw(bwindow& win); 
     // =======================================================================
     //                             Public Attributes
     // =======================================================================

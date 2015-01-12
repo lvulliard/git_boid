@@ -50,6 +50,7 @@ class Border
     // whether it is a vertical or horizontal line
     // The type can be 0 (upper), 1 (lower), 2 (right) or 3 (left)
     Border(int type, int new_x1, int new_y1, int new_c2, unsigned int new_color);
+    Border(int type, int new_x1, int new_y1, int new_c2);
 
     // =======================================================================
     //                                Destructor
@@ -110,6 +111,7 @@ class Border
     // =======================================================================
     int orientation, x1, y1, c2;
     unsigned int color;
+    double strength;
 };
 
 
