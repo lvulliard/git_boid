@@ -77,7 +77,7 @@ int main()
     for(;;)
     {
 		int ev = win.parse_event();
-		usleep(30000); // time step in microseconds
+		usleep(100000); // time step in microseconds
 		s1->draw(win);
 		//must be >10ms (depending on the system)
 		/*switch(ev)

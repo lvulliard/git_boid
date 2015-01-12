@@ -55,7 +55,7 @@ Hunter::~Hunter(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
-void Hunter::move()
+void Hunter::move(Agent** tab, int index)
 {}
 void Hunter::set_speed()
 {}

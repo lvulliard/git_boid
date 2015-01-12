@@ -97,6 +97,11 @@ void Scene::draw(bwindow& win)
 {
 	int i,j;
 	
+	// Clear the screen
+	/*for(i=0; i< DefVal::WINDOW_HEIGHT; i++)
+		for(j=0; j< DefVal::WINDOW_WIDTH; j++)
+			win.draw_point(j,i,0xFFFFFF);*/
+
 	// Draw borders
 	for(i = 0; i < nb_borders; i++){
 		int* bordPoints = new int [4];
@@ -109,11 +114,12 @@ void Scene::draw(bwindow& win)
 	for(j=0; j<(nb_prey+nb_hunt); j++)
 		for(i=0; i<360; i += round(300/10))
 		{
-			int x = round(agents[j]->get_x());
-			int y = round(agents[j]->get_y());
-			unsigned int c = agents[j]->get_color();
-			//printf("%d, %d, %d\n", x, y, c);
+			// Erase the last position
+			win.draw_point(round(agents[j]->get_x() +(10)*cos(i*0.017453)), round(agents[j]->get_y() + (10)*sin(i*0.017453)), 0xFFFFFF);
+			agents[j]->move(agents,j);
+			// Draw the new position
 			win.draw_point(round(agents[j]->get_x() +(10)*cos(i*0.017453)), round(agents[j]->get_y() + (10)*sin(i*0.017453)), agents[j]->get_color());
+			
 		}
 		
 }
