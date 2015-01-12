@@ -72,6 +72,9 @@ class Scene
     // Add a Border to the scene
     void addBorder(int type, int x1, int y1, int c2);
 
+    // Add a Prey to the scene
+    void addAgent(int nb_prey_in_array, int nb_hunt_in_array);
+
     // Draw the content of the scene
     void draw(bwindow& win); 
     // =======================================================================
@@ -113,7 +116,7 @@ class Scene
     unsigned int nb_prey, nb_borders, nb_hunt;
     double gamma1, gamma2, gamma3, gamma4, mu;
     // Objects
-    Agent* agents;
+    Agent** agents;
     Border* borders;
     Obstacle* obstacles;
 };

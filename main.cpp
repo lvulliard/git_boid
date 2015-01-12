@@ -30,6 +30,7 @@
 
 int main()
 {
+	srand (time (NULL));
     bwindow win(DefVal::WINDOW_WIDTH,DefVal::WINDOW_HEIGHT);
     printf("%d\n",win.init());
     win.map();
@@ -68,7 +69,8 @@ int main()
 	s1->addBorder(2,(DefVal::WINDOW_WIDTH)-20,(DefVal::WINDOW_HEIGHT)-20,20);
 	s1->addBorder(3,20,(DefVal::WINDOW_HEIGHT)-20,20);
 
-	// Add obstacles
+	// Add preys
+	s1->addAgent(1,1);
 
 
 	// Paint loop
@@ -110,19 +112,19 @@ int main()
 
 	    // This script will be the method used to draw an obstacle
 	    // Begin here
-		for(i=0; i<360; i += round(300/obs1.r))
+		/*for(i=0; i<360; i += round(300/obs1.r))
 		{
 			win.draw_point(round(obs1.x +(obs1.r)*cos(i*0.017453)), round(obs1.y + (obs1.r)*sin(i*0.017453)), 0);
-		}
+		}*/
 
 	    // End here
 
 	    // This script will be the method used to draw an obstacle
 	    // Begin here
-		for(i=0; i<360; i += round(300/obs2.r))
+		/*for(i=0; i<360; i += round(300/obs2.r))
 		{
 			win.draw_point(round(obs2.x +(obs2.r)*cos(i*0.017453)), round(obs2.y + (obs2.r)*sin(i*0.017453)), 0);
-		}
+		}*/
 
 	    // End here
 

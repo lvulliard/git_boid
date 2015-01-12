@@ -11,6 +11,7 @@
 //                                   Libraries
 // ===========================================================================
 #include <string.h>
+#include <math.h>
 
 
 // ===========================================================================
@@ -19,6 +20,9 @@
 #include "Scene.h"
 #include "DefVal.h"
 #include "bwindow.h"
+#include "Prey.h"
+#include "Hunter.h"
+
 
 
 
@@ -66,24 +70,51 @@ void Scene::addBorder(int type, int x1, int y1, int c2)
 		Border* new_borders = (Border*) malloc(nb_borders*sizeof(Border));
 		memcpy(new_borders, borders, (nb_borders-1)*sizeof(Border));
 		new_borders[nb_borders-1] = Border(type, x1, y1, c2);
-		printf("Et la?\n");
 		free(borders);
-		printf("Bah alors !\n");
 		borders = new_borders;
-		printf("Impossible.\n");
+	}
+}
+
+// Add a Prey to the scene
+void Scene::addAgent(int nb_prey_in_array, int nb_hunt_in_array)
+{
+	if((nb_prey_in_array <= NB_MAX_PREY) && (nb_hunt_in_array <= NB_MAX_HUNT))
+	{
+		delete agents;
+		agents = new Agent* [nb_prey_in_array+nb_hunt_in_array];
+		int i;
+		for(i=0; i<nb_hunt_in_array; i++)
+			agents[i] = new Hunter((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
+		for(i=0; i<nb_prey_in_array; i++)
+			agents[i+nb_hunt_in_array] = new Prey((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
+		nb_prey = nb_prey_in_array;
+		nb_hunt = nb_hunt_in_array;
 	}
 }
 
 // Draw the content of the scene
 void Scene::draw(bwindow& win)
 {
-	int i;
+	int i,j;
+	
+	// Draw borders
 	for(i = 0; i < nb_borders; i++){
 		int* bordPoints = new int [4];
 	    bordPoints = borders[i].get_points();
 	    win.draw_line(bordPoints[0], bordPoints[1], bordPoints[2], bordPoints[3], borders[i].get_color());
 		delete bordPoints;
 	}
+
+	// Draw agents
+	for(j=0; j<(nb_prey+nb_hunt); j++)
+		for(i=0; i<360; i += round(300/10))
+		{
+			int x = round(agents[j]->get_x());
+			int y = round(agents[j]->get_y());
+			unsigned int c = agents[j]->get_color();
+			//printf("%d, %d, %d\n", x, y, c);
+			win.draw_point(round(agents[j]->get_x() +(10)*cos(i*0.017453)), round(agents[j]->get_y() + (10)*sin(i*0.017453)), agents[j]->get_color());
+		}
 		
 }
 
