@@ -63,6 +63,7 @@ class Border
     // Gives the two points defining the border segment, in a 4-ints array
     inline int* get_points();
     inline unsigned int get_color();
+    inline int get_orientation();
 
     // =======================================================================
     //                            Accessors: setters
@@ -148,6 +149,11 @@ int* Border::get_points()
 unsigned int Border::get_color()
 {
     return color;
+}
+
+int Border::get_orientation()
+{
+    return orientation;
 }
 
 // ===========================================================================

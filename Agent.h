@@ -21,7 +21,7 @@
 //                                Project Files
 // ===========================================================================
 #include "DefVal.h"
-
+#include "Border.h"
 
 
 // ===========================================================================
@@ -71,8 +71,9 @@ class Agent
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    virtual void move(Agent** tab, int index) =0;
+    virtual void move(Border* borders, unsigned int nb, Agent** tab, int index) =0;
     virtual void set_speed() = 0;
+    double speed_from_borders(Border* borders, unsigned int nb);
     // =======================================================================
     //                             Public Attributes
     // =======================================================================

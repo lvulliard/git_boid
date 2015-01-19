@@ -55,10 +55,11 @@ Hunter::~Hunter(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
-void Hunter::move(Agent** tab, int index)
+void Hunter::move(Border* borders, unsigned int nb, Agent** tab, int index)
 {
 	x += dx;
 	y += dy;
+	speed_from_borders(borders, nb);
 }
 void Hunter::set_speed()
 {}

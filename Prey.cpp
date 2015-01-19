@@ -53,15 +53,15 @@ Prey::~Prey(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
-void Prey::move(Agent** tab, int index)
+void Prey::move(Border* borders, unsigned int nb, Agent** tab, int index)
 {
 	x += dx;
 	y += dy;
 	set_speed();
+	speed_from_borders(borders, nb);
 }
 void Prey::set_speed()
 {
-	//dx -= 0.007;
 }
 // ===========================================================================
 //                                Protected Methods

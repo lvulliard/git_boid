@@ -29,7 +29,7 @@ namespace DefVal
     const unsigned int NB_MAX_HUNT = 100;
 
     const double HUNTING_SPEED = 2.5;
-    const double BORDER_STRENGTH = 1.0;
+    const double BORDER_STRENGTH = 0.015;
 }
 
 #endif // __DefVal_H__
