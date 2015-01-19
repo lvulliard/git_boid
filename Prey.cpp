@@ -35,11 +35,11 @@
 //                                  Constructors
 // ===========================================================================
 Prey::Prey(double x, double y) : 	
-	Agent(x,y,DefVal::PREY_COLOR)
+	Agent(x,y,DefVal::PREY_HITBOX,DefVal::PREY_COLOR)
 {
 }
 
-Prey::Prey(double x, double y, unsigned int c) : Agent(x,y,c)
+Prey::Prey(double x, double y, unsigned int c) : Agent(x,y,DefVal::PREY_HITBOX,c)
 {
 }
 
@@ -53,17 +53,66 @@ Prey::~Prey(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
-void Prey::move(Border* borders, unsigned int nb, Agent** tab, int index)
+void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsigned int nb_a)
 {
+	// Wind
+	speed_from_borders(borders, nb_b);
+
+	// Index and number of agents in the radius of detection
+	int i,k;
+	k=0;
+
+	for(i = 0; i < nb_a; i++)
+	{
+		double* dv;
+		if(i != index)
+		{
+			dv = tab[i]->speed_for_preys(x,y,dx,dy,r);
+			//dv = speed_for_preys(x,y,dx,dy,r);
+			if( (dv[0]!=0) && (dv[1]!= 0) )
+				k++;
+		}
+		//printf("ddx = %f, ddy = %f\n", dv[0], dv[1]);
+
+		dx += dv[0];
+		dy += dv[1];
+	}
+	
+	// Move
 	x += dx;
 	y += dy;
-	speed_from_borders(borders, nb);
 }
-void Prey::speed_for_preys(Agent** tab, int index)
-{
 
+double* Prey::speed_for_preys(double x2, double y2, double dx2, double dy2, double r2)
+{
+	// Returned induced speed
+	double* res = new double [2];
+	res[0] = 0;
+	res[1] = 0;
+
+	// Distance between the 2 points
+	double dis = (x-x2)*(x-x2) + (y - y2)*(y-y2);
+
+	// V3
+	if(dis < hitbox*hitbox)
+	{
+		res[0] = - DefVal::GAMMA3 * (dx - dx2);
+		res[1] = - DefVal::GAMMA3 * (dy - dy2);
+	}
+	else
+	{
+		// V1
+		if(dis < r*r)
+		{
+
+		}
+
+	}
+
+	return res;
 }
-void Prey::speed_for_hunters(Agent** tab, int index)
+
+double* Prey::speed_for_hunters(double x2, double y2, double dx2, double dy2, double r2)
 {
 
 }

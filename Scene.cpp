@@ -81,7 +81,7 @@ void Scene::addAgent(int nb_prey_in_array, int nb_hunt_in_array)
 	if((nb_prey_in_array <= NB_MAX_PREY) && (nb_hunt_in_array <= NB_MAX_HUNT))
 	{
 		delete agents;
-		agents = new Agent* [nb_prey_in_array+nb_hunt_in_array];
+		agents = new Agent* [(nb_prey_in_array+nb_hunt_in_array)];
 		int i;
 		for(i=0; i<nb_hunt_in_array; i++)
 			agents[i] = new Hunter((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
@@ -96,6 +96,8 @@ void Scene::addAgent(int nb_prey_in_array, int nb_hunt_in_array)
 void Scene::draw(bwindow& win)
 {
 	int i,j;
+	// Total number of agents
+	unsigned int N = nb_prey+nb_hunt;
 
 	// Draw borders
 	for(i = 0; i < nb_borders; i++){
@@ -106,13 +108,13 @@ void Scene::draw(bwindow& win)
 	}
 
 	// Draw agents
-	for(j=0; j<(nb_prey+nb_hunt); j++)
+	for(j=0; j<(N); j++)
 	{
 		// Erase the last known position
 		win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),0x77B5FE);
 
 		// Move the agent
-		agents[j]->move(borders, nb_borders, agents,j);
+		agents[j]->move(borders, nb_borders, agents,j,N);
 
 		// Draw the new position
 		win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),agents[j]->get_color());

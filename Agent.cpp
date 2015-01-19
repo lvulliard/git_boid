@@ -33,13 +33,14 @@
 // ===========================================================================
 //                                  Constructors
 // ===========================================================================
-Agent::Agent(double x, double y, unsigned int c)
+Agent::Agent(double x, double y, double h, unsigned int c)
 {
     this->x = x;
     this->y = y;
     dx = ((float)rand()/RAND_MAX);
     dy = ((float)rand()/RAND_MAX);
     color = c;
+    hitbox = h;
 }
 
 // ===========================================================================

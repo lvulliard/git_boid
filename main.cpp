@@ -70,7 +70,7 @@ int main()
 	s1->addBorder(3,20,(DefVal::WINDOW_HEIGHT)-20,20);
 
 	// Add preys
-	s1->addAgent(20,10);
+	s1->addAgent(25,1);
 
 
 	// Paint loop

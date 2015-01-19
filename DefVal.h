@@ -25,11 +25,18 @@ namespace DefVal
     const unsigned int WINDOW_WIDTH = 800;
     const unsigned int WINDOW_HEIGHT = 600;
     const unsigned int NB_BORDERS = 4;
-    const unsigned int NB_MAX_PREY = 200;
-    const unsigned int NB_MAX_HUNT = 100;
+    const unsigned int NB_MAX_PREY = 2000;
+    const unsigned int NB_MAX_HUNT = 1000;
 
     const double HUNTING_SPEED = 2.5;
     const double BORDER_STRENGTH = 0.015;
+    const double HUNTER_HITBOX = 10.0;
+    const double PREY_HITBOX = 6.0;
+    const double GAMMA1 = 0.1;
+    const double GAMMA2 = 0.1;
+    const double GAMMA3 = 0.05;
+    const double GAMMA4 = 0.1;
+    const double MU = 0.1;
 }
 
 #endif // __DefVal_H__
