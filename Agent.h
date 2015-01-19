@@ -72,7 +72,8 @@ class Agent
     //                              Public Methods
     // =======================================================================
     virtual void move(Border* borders, unsigned int nb, Agent** tab, int index) =0;
-    virtual void set_speed() = 0;
+    virtual void speed_for_preys(Agent** tab, int index) = 0;
+    virtual void speed_for_hunters(Agent** tab, int index) = 0;
     double speed_from_borders(Border* borders, unsigned int nb);
     // =======================================================================
     //                             Public Attributes

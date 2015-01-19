@@ -57,11 +57,15 @@ void Prey::move(Border* borders, unsigned int nb, Agent** tab, int index)
 {
 	x += dx;
 	y += dy;
-	set_speed();
 	speed_from_borders(borders, nb);
 }
-void Prey::set_speed()
+void Prey::speed_for_preys(Agent** tab, int index)
 {
+
+}
+void Prey::speed_for_hunters(Agent** tab, int index)
+{
+
 }
 // ===========================================================================
 //                                Protected Methods

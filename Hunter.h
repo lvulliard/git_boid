@@ -68,7 +68,9 @@ class Hunter : public Agent
     //                              Public Methods
     // =======================================================================
     void move(Border* borders, unsigned int nb, Agent** tab, int index);
-    void set_speed();
+    void speed_for_preys(Agent** tab, int index);
+    void speed_for_hunters(Agent** tab, int index);
+
     // =======================================================================
     //                             Public Attributes
     // =======================================================================

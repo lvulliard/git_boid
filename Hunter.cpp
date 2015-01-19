@@ -61,8 +61,15 @@ void Hunter::move(Border* borders, unsigned int nb, Agent** tab, int index)
 	y += dy;
 	speed_from_borders(borders, nb);
 }
-void Hunter::set_speed()
-{}
+
+void Hunter::speed_for_preys(Agent** tab, int index)
+{
+
+}
+void Hunter::speed_for_hunters(Agent** tab, int index)
+{
+
+}
 // ===========================================================================
 //                                Protected Methods
 // ===========================================================================
