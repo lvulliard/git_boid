@@ -37,8 +37,8 @@ Agent::Agent(double x, double y, unsigned int c)
 {
     this->x = x;
     this->y = y;
-    dx = 0;
-    dy = 0;
+    dx = ((float)rand()/RAND_MAX);
+    dy = ((float)rand()/RAND_MAX);
     color = c;
 }
 

@@ -113,8 +113,9 @@ void Scene::draw(bwindow& win)
 	// Draw agents
 	for(j=0; j<(nb_prey+nb_hunt); j++)
 	{
+		
 		//win.draw_fsquare(round(agents[j]->get_x()-10),round(agents[j]->get_y()-10),round(agents[j]->get_x()+10),round(agents[j]->get_y()+10),0xEEEEEE);	
-		for(i=0; i<360; i += round(300/10))
+		/*for(i=0; i<360; i += round(300/10))
 		{
 			// Erase the last position
 			win.draw_point(round(agents[j]->get_x() +(10)*cos(i*0.017453)), round(agents[j]->get_y() + (10)*sin(i*0.017453)), 0xFFFFFF);
@@ -125,8 +126,14 @@ void Scene::draw(bwindow& win)
 		{
 			// Draw the new position
 			win.draw_point(round(agents[j]->get_x() +(10)*cos(i*0.017453)), round(agents[j]->get_y() + (10)*sin(i*0.017453)), agents[j]->get_color());
-		}
+		}*/
 		
+		win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),0x77B5FE);
+
+		agents[j]->move(agents,j);
+
+		win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),agents[j]->get_color());
+	
 	}
 }
 
