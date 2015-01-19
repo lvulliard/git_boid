@@ -70,7 +70,7 @@ int main()
 	s1->addBorder(3,20,(DefVal::WINDOW_HEIGHT)-20,20);
 
 	// Add preys
-	s1->addAgent(25,1);
+	s1->addAgent(50,1);
 
 
 	// Paint loop
@@ -80,7 +80,7 @@ int main()
 		usleep(10000); // time step in microseconds
 
 		// Comment to see trajectories
-		//win.draw_fsquare(0,0,DefVal::WINDOW_WIDTH,DefVal::WINDOW_HEIGHT,0x77B5FE);
+		win.draw_fsquare(0,0,DefVal::WINDOW_WIDTH,DefVal::WINDOW_HEIGHT,0x77B5FE);
 
 		s1->draw(win);
 		//must be >10ms (depending on the system)

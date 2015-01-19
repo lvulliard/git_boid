@@ -30,11 +30,13 @@ namespace DefVal
 
     const double HUNTING_SPEED = 2.5;
     const double BORDER_STRENGTH = 0.015;
-    const double HUNTER_HITBOX = 10.0;
-    const double PREY_HITBOX = 6.0;
-    const double GAMMA1 = 0.1;
+    const double HUNTER_HITBOX = 5.0;
+    const double PREY_HITBOX = 3.0;
+    const double HUNTER_RADIUS = 20.0;
+    const double PREY_RADIUS = 12.0;
+    const double GAMMA1 = 0.03;
     const double GAMMA2 = 0.1;
-    const double GAMMA3 = 0.05;
+    const double GAMMA3 = 0.1;
     const double GAMMA4 = 0.1;
     const double MU = 0.1;
 }

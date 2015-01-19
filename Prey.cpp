@@ -35,11 +35,11 @@
 //                                  Constructors
 // ===========================================================================
 Prey::Prey(double x, double y) : 	
-	Agent(x,y,DefVal::PREY_HITBOX,DefVal::PREY_COLOR)
+	Agent(x,y,DefVal::PREY_HITBOX,DefVal::PREY_RADIUS,DefVal::PREY_COLOR)
 {
 }
 
-Prey::Prey(double x, double y, unsigned int c) : Agent(x,y,DefVal::PREY_HITBOX,c)
+Prey::Prey(double x, double y, unsigned int c) : Agent(x,y,DefVal::PREY_HITBOX,DefVal::PREY_RADIUS,c)
 {
 }
 
@@ -102,9 +102,10 @@ double* Prey::speed_for_preys(double x2, double y2, double dx2, double dy2, doub
 	else
 	{
 		// V1
-		if(dis < r*r)
+		if(dis < r2*r2)
 		{
-
+			res[0] = DefVal::GAMMA1 * (dx - dx2);
+			res[1] = DefVal::GAMMA1 * (dy - dy2);
 		}
 
 	}

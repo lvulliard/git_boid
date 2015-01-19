@@ -44,7 +44,7 @@ class Agent
     // =======================================================================
     //                               Constructors
     // =======================================================================
-    Agent(double x, double y, double h, unsigned int c);
+    Agent(double x, double y, double h, double r, unsigned int c);
 
     // =======================================================================
     //                                Destructor

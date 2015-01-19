@@ -36,12 +36,12 @@
 //                                  Constructors
 // ===========================================================================
 Hunter::Hunter(double x, double y) : HUNTING_SPEED(DefVal::HUNTING_SPEED), 
-	Agent(x,y,DefVal::HUNTER_HITBOX,DefVal::HUNTER_COLOR)
+	Agent(x,y,DefVal::HUNTER_HITBOX,DefVal::HUNTER_RADIUS,DefVal::HUNTER_COLOR)
 {
 }
 
 Hunter::Hunter(double x, double y, unsigned int c) :  HUNTING_SPEED(DefVal::HUNTING_SPEED), 
-	Agent(x,y,DefVal::HUNTER_HITBOX,c)
+	Agent(x,y,DefVal::HUNTER_HITBOX,DefVal::HUNTER_RADIUS,c)
 {
 }
 
