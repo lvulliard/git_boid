@@ -79,13 +79,13 @@ void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsi
 				{
 					k2 ++;
 					dvx2 += dv[0];
-					dvy2 += dv[0];	
+					dvy2 += dv[1];	
 				}
 				else
 				{
 					k1 ++;
 					dvx1 += dv[0];
-					dvy1 += dv[0];	
+					dvy1 += dv[1];	
 				}
 			}
 	
