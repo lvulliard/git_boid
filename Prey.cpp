@@ -101,11 +101,16 @@ double* Prey::speed_for_preys(double x2, double y2, double dx2, double dy2, doub
 	}
 	else
 	{
-		// V1
 		if(dis < r2*r2)
 		{
+			// V1
 			res[0] = DefVal::GAMMA1 * (dx - dx2);
 			res[1] = DefVal::GAMMA1 * (dy - dy2);
+
+			// V2
+			res[0] += DefVal::GAMMA2 * (x - x2);
+			res[1] += DefVal::GAMMA2 * (y - y2);
+		
 		}
 
 	}
