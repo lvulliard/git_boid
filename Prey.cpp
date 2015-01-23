@@ -71,11 +71,10 @@ void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsi
 			//dv = speed_for_preys(x,y,dx,dy,r);
 			if( (dv[0]!=0) && (dv[1]!= 0) )
 				k++;
-		}
-		//printf("ddx = %f, ddy = %f\n", dv[0], dv[1]);
-
+		
 		dx += dv[0];
 		dy += dv[1];
+		}
 	}
 	
 	// Move
@@ -93,11 +92,16 @@ double* Prey::speed_for_preys(double x2, double y2, double dx2, double dy2, doub
 	// Distance between the 2 points
 	double dis = (x-x2)*(x-x2) + (y - y2)*(y-y2);
 
-	// V3
+	
 	if(dis < hitbox*hitbox)
 	{
+		// V3
 		res[0] = - DefVal::GAMMA3 * (dx - dx2);
 		res[1] = - DefVal::GAMMA3 * (dy - dy2);
+
+		// V2
+		res[0] += DefVal::GAMMA2 * (x - x2);
+		res[1] += DefVal::GAMMA2 * (y - y2);
 	}
 	else
 	{
@@ -110,7 +114,6 @@ double* Prey::speed_for_preys(double x2, double y2, double dx2, double dy2, doub
 			// V2
 			res[0] += DefVal::GAMMA2 * (x - x2);
 			res[1] += DefVal::GAMMA2 * (y - y2);
-		
 		}
 
 	}

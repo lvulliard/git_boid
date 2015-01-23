@@ -110,9 +110,6 @@ void Scene::draw(bwindow& win)
 	// Draw agents
 	for(j=0; j<(N); j++)
 	{
-		// Erase the last known position
-		win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),0x77B5FE);
-
 		// Move the agent
 		agents[j]->move(borders, nb_borders, agents,j,N);
 
