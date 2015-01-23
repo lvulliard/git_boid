@@ -34,7 +34,7 @@ namespace DefVal
     const double PREY_HITBOX = 6.0;
     const double HUNTER_RADIUS = 20.0;
     const double PREY_RADIUS = 20.0;
-    const double GAMMA1 = 0.02;
+    const double GAMMA1 = 0.03;
     const double GAMMA2 = 0.00003;
     const double GAMMA3 = 0.04;
     const double GAMMA4 = 0.1;

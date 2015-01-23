@@ -70,14 +70,14 @@ int main()
 	s1->addBorder(3,20,(DefVal::WINDOW_HEIGHT)-20,20);
 
 	// Add preys
-	s1->addAgent(300,0);
+	s1->addAgent(150,0);
 
 
 	// Paint loop
     for(;;)
     {
 		int ev = win.parse_event();
-		usleep(8000); // time step in microseconds
+		usleep(12000); // time step in microseconds
 
 		// Comment to see trajectories
 		win.draw_fsquare(0,0,DefVal::WINDOW_WIDTH,DefVal::WINDOW_HEIGHT,0x77B5FE);
