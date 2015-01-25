@@ -29,21 +29,21 @@ namespace DefVal
     const unsigned int NB_MAX_HUNT = 1000;
     const unsigned int NB_OBST = 5;
 
-    const double HUNTING_SPEED = 2.5;
+    const double HUNTING_SPEED = 0.4;
     const double BORDER_STRENGTH = 0.016;
     const double HUNTER_HITBOX = 7.0;
     const double PREY_HITBOX = 6.0;
-    const double HUNTER_RADIUS = 20.0;
-    const double PREY_RADIUS = 28.0;
+    const double HUNTER_RADIUS = 40.0;
+    const double PREY_RADIUS = 30.0;
     const double OBST_RADIUS = 15;
     const double GAMMA1 = 0.055;
     const double GAMMA2 = 0.0001;
     const double GAMMA3 = 0.05;
-    const double GAMMA3o = 0.006;
+    const double GAMMA3o = 0.008;
     const double GAMMA4 = 0.1;
     const double MU = 0.1;
     const double MAX_PREY_SPEED = 1.5;
-    const double MAX_HUNT_SPEED = 1.2;
+    const double MAX_HUNT_SPEED = 1.1;
     const double HUNTER_DRUNKENNESS = 0.02;
 }
 

@@ -70,17 +70,17 @@ int main()
 	s1->addBorder(3,20,(DefVal::WINDOW_HEIGHT)-20,20);
 
 	// Add obstacle
-	s1->addObstacle(DefVal::NB_OBST);
+	//s1->addObstacle(DefVal::NB_OBST);
 
 	// Add preys
-	s1->addAgent(20,50);
+	s1->addAgent(10,10);
 
 
 	// Paint loop
     for(;;)
     {
 		int ev = win.parse_event();
-		usleep(8000); // time step in microseconds
+		usleep(7500); // time step in microseconds
 
 		// Comment to see trajectories
 		win.draw_fsquare(0,0,DefVal::WINDOW_WIDTH,DefVal::WINDOW_HEIGHT,0x77B5FE);

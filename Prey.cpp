@@ -125,7 +125,7 @@ void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsi
 double* Prey::speed_for_preys(double x2, double y2, double dx2, double dy2, double r2)
 {
 	// Returned induced speed
-	double* res = new double [2];
+	double* res = new double [3];
 	res[0] = 0;
 	res[1] = 0;
 	res[2] = 0;
@@ -164,8 +164,25 @@ double* Prey::speed_for_preys(double x2, double y2, double dx2, double dy2, doub
 	return res;
 }
 
-double* Prey::speed_for_hunters(double x2, double y2, double dx2, double dy2, double r2)
+double* Prey::speed_for_hunters(double x2, double y2, double r2)
 {
+	// Returned induced speed
+	double* res = new double [3];
+	res[0] = 0;
+	res[1] = 0;
+	res[2] = 0;
+
+	double dis = sqrt((x-x2)*(x-x2) + (y - y2)*(y-y2));
+
+	if( dis < r2)
+	{
+		res[0] = ((x - x2) * DefVal::HUNTING_SPEED) / dis;
+		res[1] = ((y - y2) * DefVal::HUNTING_SPEED) / dis;
+	}
+
+	res[2] = dis;
+
+	return res;
 
 }
 // ===========================================================================
