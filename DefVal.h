@@ -30,7 +30,7 @@ namespace DefVal
     const unsigned int NB_OBST = 5;
 
     const double HUNTING_SPEED = 2.5;
-    const double BORDER_STRENGTH = 0.015;
+    const double BORDER_STRENGTH = 0.016;
     const double HUNTER_HITBOX = 7.0;
     const double PREY_HITBOX = 6.0;
     const double HUNTER_RADIUS = 20.0;
@@ -42,7 +42,9 @@ namespace DefVal
     const double GAMMA3o = 0.006;
     const double GAMMA4 = 0.1;
     const double MU = 0.1;
-    const double MAX_PREY_SPEED = 2.1;
+    const double MAX_PREY_SPEED = 1.5;
+    const double MAX_HUNT_SPEED = 1.2;
+    const double HUNTER_DRUNKENNESS = 0.02;
 }
 
 #endif // __DefVal_H__

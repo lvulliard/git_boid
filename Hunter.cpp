@@ -10,7 +10,7 @@
 // ===========================================================================
 //                                   Libraries
 // ===========================================================================
-
+#include <math.h> 
 
 
 // ===========================================================================
@@ -57,9 +57,21 @@ Hunter::~Hunter(void)
 // ===========================================================================
 void Hunter::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsigned int nb_a, Obstacle* obs, unsigned int nb_o)
 {
+	// Wind
+	speed_from_borders(borders, nb_b);
+
+	// Isotropic motion
+	dx += DefVal::HUNTER_DRUNKENNESS * pow(-1,round((float)rand()/RAND_MAX))*((float)rand()/RAND_MAX);
+	dy += DefVal::HUNTER_DRUNKENNESS * pow(-1,round((float)rand()/RAND_MAX))*((float)rand()/RAND_MAX);
+
+	// Max speed
+	if (dx*dx > (DefVal::MAX_HUNT_SPEED)*(DefVal::MAX_HUNT_SPEED))
+		dx /= (abs(dx)/DefVal::MAX_HUNT_SPEED);
+	if (dy*dy > (DefVal::MAX_HUNT_SPEED)*(DefVal::MAX_HUNT_SPEED))
+		dy /= (abs(dy)/DefVal::MAX_HUNT_SPEED);
+
 	x += dx;
 	y += dy;
-	speed_from_borders(borders, nb_b);
 }
 
 double* Hunter::speed_for_preys(double x2, double y2, double dx2, double dy2, double r2)
