@@ -34,7 +34,7 @@ int main()
     bwindow win(DefVal::WINDOW_WIDTH,DefVal::WINDOW_HEIGHT);
     printf("%d\n",win.init());
     win.map();
-
+	
     int i;
 
     // Obj declarations
@@ -68,6 +68,9 @@ int main()
 	s1->addBorder(1,20,(DefVal::WINDOW_HEIGHT)-20,(DefVal::WINDOW_WIDTH)-20);
 	s1->addBorder(2,(DefVal::WINDOW_WIDTH)-20,(DefVal::WINDOW_HEIGHT)-20,20);
 	s1->addBorder(3,20,(DefVal::WINDOW_HEIGHT)-20,20);
+
+	// Add obstacle
+	s1->addObstacle(DefVal::NB_OBST);
 
 	// Add preys
 	s1->addAgent(150,0);

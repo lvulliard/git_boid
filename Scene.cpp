@@ -22,7 +22,7 @@
 #include "bwindow.h"
 #include "Prey.h"
 #include "Hunter.h"
-
+#include "Obstacle.h"
 
 
 
@@ -46,7 +46,11 @@ Scene::Scene(void) : MAX_WIDTH(DefVal::WINDOW_WIDTH),
 	NB_MAX_HUNT(DefVal::NB_MAX_HUNT),
 	nb_borders(0),
 	nb_prey(0),
-	nb_hunt(0)
+	nb_hunt(0),
+	nb_obstacles(0),
+	agents(NULL),
+	borders(NULL),
+	obstacles(NULL)
 {
 }
 
@@ -60,12 +64,45 @@ Scene::~Scene(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
+// Add an Obstacle to the scene
+void Scene::addObstacle(double x, double y, double r)
+{
+	nb_obstacles++;
+	Obstacle* new_obstacles = new Obstacle [nb_obstacles];
+	memcpy(new_obstacles, obstacles, (nb_obstacles-1)*sizeof(Obstacle));
+	new_obstacles[nb_obstacles-1].x = x;
+	new_obstacles[nb_obstacles-1].y = y;
+	new_obstacles[nb_obstacles-1].r = r;
+	delete [] obstacles;
+	obstacles = new_obstacles;
+
+}
+
+// Add random obstacles to the scene
+void Scene::addObstacle(unsigned int n)
+{
+	n = round(2*n*((float)rand()/RAND_MAX));
+	nb_obstacles += n;
+	Obstacle* new_obstacles = new Obstacle [nb_obstacles];
+	memcpy(new_obstacles, obstacles, (nb_obstacles-n)*sizeof(Obstacle));
+	
+	int i;
+	for(i = 1; i <= n; i++)
+	{
+		new_obstacles[nb_obstacles-i].x = ((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH;
+		pow(-1,round((float)rand()/RAND_MAX))*((float)rand()/RAND_MAX);
+		new_obstacles[nb_obstacles-i].y = ((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT;
+		new_obstacles[nb_obstacles-i].r = 10 + ((float)rand()/RAND_MAX)*2*(DefVal::OBST_RADIUS - 10);
+	} 
+	delete [] obstacles;
+	obstacles = new_obstacles;
+}
+
 // Add a Border to the scene
 // The type can be 0 (upper), 1 (lower), 2 (right) or 3 (left)
 void Scene::addBorder(int type, int x1, int y1, int c2)
 {
 	if(nb_borders < NB_BORDERS){
-		
 		nb_borders++;
 		Border* new_borders = (Border*) malloc(nb_borders*sizeof(Border));
 		memcpy(new_borders, borders, (nb_borders-1)*sizeof(Border));
@@ -107,16 +144,35 @@ void Scene::draw(bwindow& win)
 		delete bordPoints;
 	}
 
+	// Draw obstacles
+	for(j=0; j<nb_obstacles; j++)
+		for(i=0; i<360; i += round(300/obstacles[j].r))
+		{
+			win.draw_point(round(obstacles[j].x +(obstacles[j].r)*cos(i*0.017453)), round(obstacles[j].y + (obstacles[j].r)*sin(i*0.017453)), 0);
+		}
+
+
 	// Draw agents
 	for(j=0; j<(N); j++)
 	{
 		// Move the agent
-		agents[j]->move(borders, nb_borders, agents,j,N);
+		agents[j]->move(borders, nb_borders, agents,j,N, obstacles, nb_obstacles);
 
 		// Draw the new position
 		win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),agents[j]->get_color());
 	
 	}
+}
+
+// Check-up function
+void Scene::checkup()
+{
+	printf("Je pense que ça va.\n");
+	printf("Mes paramètres sont :\n MAX_WIDTH = %d, MAX_HEIGHT = %d\n", MAX_WIDTH , MAX_HEIGHT);
+	printf("NB_BORDERS = %d; NB_MAX_PREY = %d, NB_MAX_HUNT = %d\n", NB_BORDERS, NB_MAX_PREY, NB_MAX_HUNT);
+	printf("nb_prey = %d, nb_hunt = %d, nb_borders = %d, nb_obstacles = %d\n", nb_prey, nb_hunt, nb_borders, nb_obstacles);
+	printf("Et pour les pointeurs, on a :\n");
+	//printf("%d; %d; %d", *agents, borders, obstacles);
 }
 
 // ===========================================================================

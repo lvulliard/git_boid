@@ -55,7 +55,7 @@ Hunter::~Hunter(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
-void Hunter::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsigned int nb_a)
+void Hunter::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsigned int nb_a, Obstacle* obs, unsigned int nb_o)
 {
 	x += dx;
 	y += dy;

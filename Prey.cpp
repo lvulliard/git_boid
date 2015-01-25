@@ -10,7 +10,7 @@
 // ===========================================================================
 //                                   Libraries
 // ===========================================================================
-
+#include <math.h>
 
 
 // ===========================================================================
@@ -53,7 +53,7 @@ Prey::~Prey(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
-void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsigned int nb_a)
+void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsigned int nb_a, Obstacle* obs, unsigned int nb_o)
 {
 	// Wind
 	speed_from_borders(borders, nb_b);
@@ -63,9 +63,6 @@ void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsi
 
 	// Global change of speed
 	double dvx1 = 0, dvx2 = 0, dvy1 = 0, dvy2 = 0;
-
-	// TEST
-	//printf("dx = %f, dy = %f \n", dx, dy);
 
 	for(i = 0; i < nb_a; i++)
 	{
@@ -91,21 +88,34 @@ void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsi
 	
 		}
 	}
-	
-	// TEST
-	//printf("dvx1 %f, dvx2 %f, dvy1 %f, dvy2 %f", dvx1, dvx2, dvy1, dvy2);
 
 	// Compute new speeds
 	if(k1 != 0)
 	{
 		dx += (dvx1 / (double) k1); 
-		dy += (dvy1 / (double) k1); 
+		dy += (dvy1 / (double) k1);	 
 	}
 	if(k2 != 0)
 	{
 		dx += (dvx2 / (double) k2); 
 		dy += (dvy2 / (double) k2); 
 	}
+
+	// Obstacles
+	for(i = 0; i < nb_o; i++)
+		if( ( (obs[i].x - x)*(obs[i].x - x) + (obs[i].y - y)*(obs[i].y - y) )  < (hitbox+obs[i].r)*(hitbox+obs[i].r))
+		{
+			// V3
+			dx += - DefVal::GAMMA3o * (obs[i].x - x);
+			dy += - DefVal::GAMMA3o * (obs[i].y - y);
+		}
+
+
+	// Max speed
+	if (dx*dx > (DefVal::MAX_PREY_SPEED)*(DefVal::MAX_PREY_SPEED))
+		dx /= (abs(dx)/DefVal::MAX_PREY_SPEED);
+	if (dy*dy > (DefVal::MAX_PREY_SPEED)*(DefVal::MAX_PREY_SPEED))
+		dy /= (abs(dy)/DefVal::MAX_PREY_SPEED);
 
 	// Move
 	x += dx;

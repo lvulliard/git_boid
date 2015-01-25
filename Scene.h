@@ -69,6 +69,12 @@ class Scene
     // =======================================================================
     //                              Public Methods
     // =======================================================================
+    // Add an Obstacle to the scene
+    void addObstacle(double x, double y, double r);
+
+    // Add random obstacles to the scene
+    void addObstacle(unsigned int n);
+
     // Add a Border to the scene
     void addBorder(int type, int x1, int y1, int c2);
 
@@ -77,6 +83,9 @@ class Scene
 
     // Draw the content of the scene
     void draw(bwindow& win); 
+
+    // Check-up function
+    void checkup();
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -113,8 +122,7 @@ class Scene
     // Constants
     const unsigned int MAX_WIDTH, MAX_HEIGHT, NB_BORDERS, NB_MAX_PREY, NB_MAX_HUNT;
     // Parameters
-    unsigned int nb_prey, nb_borders, nb_hunt;
-    double gamma1, gamma2, gamma3, gamma4, mu;
+    unsigned int nb_prey, nb_borders, nb_hunt, nb_obstacles;
     // Objects
     Agent** agents;
     Border* borders;
