@@ -77,7 +77,7 @@ int main()
     for(;;)
     {
 		int ev = win.parse_event();
-		usleep(12000); // time step in microseconds
+		usleep(8000); // time step in microseconds
 
 		// Comment to see trajectories
 		win.draw_fsquare(0,0,DefVal::WINDOW_WIDTH,DefVal::WINDOW_HEIGHT,0x77B5FE);

@@ -10,7 +10,7 @@
 // ===========================================================================
 //                                   Libraries
 // ===========================================================================
-
+#include <math.h> 
 
 
 // ===========================================================================
@@ -37,8 +37,8 @@ Agent::Agent(double x, double y, double h, double r, unsigned int c)
 {
     this->x = x;
     this->y = y;
-    dx = ((float)rand()/RAND_MAX);
-    dy = ((float)rand()/RAND_MAX);
+    dx = pow(-1,round((float)rand()/RAND_MAX))*((float)rand()/RAND_MAX);
+    dy = pow(-1,round((float)rand()/RAND_MAX))*((float)rand()/RAND_MAX);
     color = c;
     hitbox = h;
     this->r = r;
