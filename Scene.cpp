@@ -149,9 +149,9 @@ void Scene::draw(bwindow& win)
 	{
 		for(i=0; i<360; i += round(300/obstacles[j].r))
 		{
-			win.draw_point(round(obstacles[j].x +(obstacles[j].r)*cos(i*0.017453)), round(obstacles[j].y + (obstacles[j].r)*sin(i*0.017453)), 0x4d9e3a);
+			win.draw_point(round(obstacles[j].x +(obstacles[j].r)*cos(i*0.017453)), round(obstacles[j].y + (obstacles[j].r)*sin(i*0.017453)), 0x4D9E3A);
 		}
-			win.draw_point(obstacles[j].x, obstacles[j].y, 0x4d9e3a);
+			win.draw_point(obstacles[j].x, obstacles[j].y, 0x4D9E3A);
 	}
 
 

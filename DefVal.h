@@ -22,7 +22,7 @@ namespace DefVal
     const unsigned int BORDER_COLOR = 0xBB0000;
     const unsigned int HUNTER_COLOR = 0xFF0000;
     const unsigned int PREY_COLOR = 0x0000FF;
-    const unsigned int WINDOW_WIDTH = 800;
+    const unsigned int WINDOW_WIDTH = 1200;
     const unsigned int WINDOW_HEIGHT = 800;
     const unsigned int NB_BORDERS = 4;
     const unsigned int NB_MAX_PREY = 2000;
@@ -30,7 +30,7 @@ namespace DefVal
     const unsigned int NB_OBST = 8;
 
     const double HUNTING_SPEED = 0.6;
-    const double BORDER_STRENGTH = 0.016;
+    const double BORDER_STRENGTH = 0.03;
     const double HUNTER_HITBOX = 7.0;
     const double PREY_HITBOX = 6.0;
     const double HUNTER_RADIUS = 40.0;
@@ -40,7 +40,7 @@ namespace DefVal
     const double GAMMA2 = 0.0001;
     const double GAMMA3 = 0.05;
     const double GAMMA3o = 0.016;
-    const double GAMMA4 = 0.15;
+    const double GAMMA4 = 0.07;
     const double MU = 0.1;
     const double MAX_PREY_SPEED = 1.2;
     const double MAX_HUNT_SPEED = 1.1;
