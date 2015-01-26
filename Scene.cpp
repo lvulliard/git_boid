@@ -158,14 +158,27 @@ void Scene::draw(bwindow& win)
 	// Draw agents
 	for(j=0; j<(N); j++)
 	{
-		// Move the agent
-		agents[j]->move(borders, nb_borders, agents,j,N, obstacles, nb_obstacles);
+		// State of the agent (has eaten, is alive or dead)
+		int state = agents[j]->get_state();
 
-		// Draw the new position
 		// If the agent is not dead
-		if(agents[j]->get_state() != 1)
+		if(state != 1)
+		{
+			if(state >= 0)
+			{
+				// Move the agent
+				agents[j]->move(borders, nb_borders, agents,j,N, obstacles, nb_obstacles);
+			}
+			else
+			{
+				// Wait for the time to be spent
+				agents[j]->wait();
+			}
+
+
+			// Draw the new position
 			win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),agents[j]->get_color());
-	
+		}
 	}
 }
 

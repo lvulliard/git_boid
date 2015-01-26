@@ -81,6 +81,12 @@ void Hunter::move(Border* borders, unsigned int nb_b, Agent** tab, int index, un
 				dx = dv[0];
 				dy = dv[1];	
 				min_dist = dv[2];
+				
+				// If hunter just ate
+				if(dv[2] == -1 )
+				{
+					state = - DefVal::WAITING_STEPS * DefVal::TIME_STEP;
+				}
 			}
 		}
 	}

@@ -140,35 +140,39 @@ double* Prey::speed_for_preys(double x2, double y2, double dx2, double dy2, doub
 	res[1] = 0;
 	res[2] = 0;
 
-	// Distance between the 2 points
-	double dis = (x-x2)*(x-x2) + (y - y2)*(y-y2);
-
-	
-	if(dis < hitbox*hitbox)
+	// If the prey is alive
+	if(state != 1)
 	{
-		// V3
-		res[0] = - DefVal::GAMMA3 * (dx - dx2);
-		res[1] = - DefVal::GAMMA3 * (dy - dy2);
+		// Distance between the 2 points
+		double dis = (x-x2)*(x-x2) + (y - y2)*(y-y2);
 
-		// V2
-		res[0] += DefVal::GAMMA2 * (x - x2);
-		res[1] += DefVal::GAMMA2 * (y - y2);
-
-		res[2] = 1;
-	}
-	else
-	{
-		if(dis < r2*r2)
+		
+		if(dis < hitbox*hitbox)
 		{
-			// V1
-			res[0] = DefVal::GAMMA1 * (dx - dx2);
-			res[1] = DefVal::GAMMA1 * (dy - dy2);
+			// V3
+			res[0] = - DefVal::GAMMA3 * (dx - dx2);
+			res[1] = - DefVal::GAMMA3 * (dy - dy2);
 
 			// V2
 			res[0] += DefVal::GAMMA2 * (x - x2);
 			res[1] += DefVal::GAMMA2 * (y - y2);
-		}
 
+			res[2] = 1;
+		}
+		else
+		{
+			if(dis < r2*r2)
+			{
+				// V1
+				res[0] = DefVal::GAMMA1 * (dx - dx2);
+				res[1] = DefVal::GAMMA1 * (dy - dy2);
+
+				// V2
+				res[0] += DefVal::GAMMA2 * (x - x2);
+				res[1] += DefVal::GAMMA2 * (y - y2);
+			}
+
+		}
 	}
 
 	return res;
@@ -182,20 +186,24 @@ double* Prey::speed_for_hunters(double x2, double y2, double r2)
 	res[1] = 0;
 	res[2] = 0;
 
-	double dis = sqrt((x-x2)*(x-x2) + (y - y2)*(y-y2));
-
-	if( dis < r2)
+	// If the prey is alive
+	if(state != 1)
 	{
-		res[0] = ((x - x2) * DefVal::HUNTING_SPEED) / dis;
-		res[1] = ((y - y2) * DefVal::HUNTING_SPEED) / dis;
-	}
+		double dis = sqrt((x-x2)*(x-x2) + (y - y2)*(y-y2));
 
-	res[2] = dis;
+		if( dis < r2)
+		{
+			res[0] = ((x - x2) * DefVal::HUNTING_SPEED) / dis;
+			res[1] = ((y - y2) * DefVal::HUNTING_SPEED) / dis;
+		}
 
-	if( dis < hitbox)
-	{
-		state = 1;
-		res[2] = -1;
+		res[2] = dis;
+
+		if( dis < hitbox)
+		{
+			state = 1;
+			res[2] = -1;
+		}
 	}
 
 	return res;

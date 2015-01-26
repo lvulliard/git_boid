@@ -73,14 +73,14 @@ int main()
 	s1->addObstacle(DefVal::NB_OBST);
 
 	// Add preys
-	s1->addAgent(30,20);
+	s1->addAgent(100,10);
 
 
 	// Paint loop
     for(;;)
     {
 		int ev = win.parse_event();
-		usleep(7500); // time step in microseconds
+		usleep(DefVal::TIME_STEP); // time step in microseconds
 
 		// Comment to see trajectories
 		win.draw_fsquare(0,0,DefVal::WINDOW_WIDTH,DefVal::WINDOW_HEIGHT,0xE2BD40);
