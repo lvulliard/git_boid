@@ -70,19 +70,29 @@ void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsi
 		if(i != index)
 		{
 			dv = tab[i]->speed_for_preys(x,y,dx,dy,r);
+			// If a speed is induced
 			if( (dv[0]!=0) && (dv[1]!= 0) ){
-				// If in radius but too close
-				if (dv[2])
+				switch((int)dv[2])
 				{
-					k2 ++;
-					dvx2 += dv[0];
-					dvy2 += dv[1];	
-				}
-				else
-				{
+					// If prey in radius
+					case 0 :
 					k1 ++;
 					dvx1 += dv[0];
 					dvy1 += dv[1];	
+					break;
+
+					// If prey in radius but too close
+					case 1 :
+					k2 ++;
+					dvx2 += dv[0];
+					dvy2 += dv[1];
+					break;
+
+					// If hunter
+					case 2 :
+					dx += dv[0];
+					dy += dv[1];
+					break;
 				}
 			}
 	
