@@ -175,10 +175,17 @@ void Scene::draw(bwindow& win)
 	// Total number of agents
 	unsigned int N = nb_prey+nb_hunt;
 	// TEST
-	int birthrate = 10*DefVal::MU;
+	int birthrate = round(nb_prey*DefVal::MU);
+
+	if((pred_count % birthrate) == 0)
+	{
+		pred_count = 0;
+		addPrey();
+	}
 
 	// Draw borders
-	for(i = 0; i < nb_borders; i++){
+	for(i = 0; i < nb_borders; i++)
+	{
 		int* bordPoints = new int [4];
 	    bordPoints = borders[i].get_points();
 	    win.draw_line(bordPoints[0], bordPoints[1], bordPoints[2], bordPoints[3], borders[i].get_color());
