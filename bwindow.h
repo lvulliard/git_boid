@@ -74,7 +74,7 @@ class bwindow
 // drawing functions 
 
 // ***** draw_text(); print some text at the screen; the text is a string of length len; it is printed at coordinates x,y and with color color
-    void draw_text(int x, int y, unsigned int color, char * text, int len);
+    void draw_text(int x, int y, unsigned int color, const char * text, int len);
 // ****** draw_line() : display a line from point (x1,y1) to (x2,y2) with color color 
     void draw_line(int x1, int y1, int x2, int y2, unsigned int color);
 // ****** draw_square(): draw a rectangle from point (x1,y1) to (x2,y2) with color color fsquare is a filled rectangle

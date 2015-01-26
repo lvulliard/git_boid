@@ -164,7 +164,7 @@ int bwindow::parse_event()
   }
 }
 
-void bwindow::draw_text(int x, int y, unsigned int color,char * text, int len)
+void bwindow::draw_text(int x, int y, unsigned int color, const char * text, int len)
 {
     XSetForeground(display, gc,color);
     XDrawString(display, win, gc, x, y, text, len);

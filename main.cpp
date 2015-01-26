@@ -73,7 +73,7 @@ int main()
 	s1->addObstacle(DefVal::NB_OBST);
 
 	// Add preys
-	s1->addAgent(100,10);
+	s1->addAgent(150,150);
 
 
 	// Paint loop

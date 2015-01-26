@@ -12,6 +12,7 @@
 // ===========================================================================
 #include <string.h>
 #include <math.h>
+#include <string>
 
 
 // ===========================================================================
@@ -154,7 +155,7 @@ void Scene::draw(bwindow& win)
 			win.draw_point(obstacles[j].x, obstacles[j].y, 0x4D9E3A);
 	}
 
-
+	int count_deads = 0;
 	// Draw agents
 	for(j=0; j<(N); j++)
 	{
@@ -175,11 +176,20 @@ void Scene::draw(bwindow& win)
 				agents[j]->wait();
 			}
 
-
 			// Draw the new position
 			win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),agents[j]->get_color());
 		}
+		else
+		{
+			count_deads++;
+		}
 	}
+
+	char numstr[21]; // enough to hold all numbers up to 64-bits
+	sprintf(numstr, "%d", count_deads);
+	std::string count_string = " preys eaten.";
+	count_string = numstr + count_string;
+	win.draw_text(50,50,0x0,count_string.c_str(),count_string.size());
 }
 
 // Check-up function
