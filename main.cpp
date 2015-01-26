@@ -73,7 +73,7 @@ int main()
 	s1->addObstacle(DefVal::NB_OBST);
 
 	// Add preys
-	s1->addAgent(150,150);
+	s1->addAgent(175,175);
 
 
 	// Paint loop
@@ -87,19 +87,13 @@ int main()
 
 		s1->draw(win);
 		//must be >10ms (depending on the system)
-		/*switch(ev)
+		switch(ev)
 		{
 		    case BKPRESS :
-			printf("keypressed\n"); 
-			printf("key : %s\n",win.get_lastkey());
+			if(!strcmp(win.get_lastkey(), "space"))
+				usleep(1000000);
 			break;
-		    case BBPRESS:
-			printf("buttonpressed\n"); break;
-		    case BEXPOSE:
-			printf("expose\n"); break;
-		    case BCONFIGURE:
-			printf("configure\n"); break;
-		}*/
+		}
 
 		/*win.draw_line(100,100,200,200,0xFF0000);
 		win.draw_text(10,10,0x0,"Hello World",strlen("Hello World"));
