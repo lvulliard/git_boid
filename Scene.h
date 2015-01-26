@@ -78,8 +78,14 @@ class Scene
     // Add a Border to the scene
     void addBorder(int type, int x1, int y1, int c2);
 
-    // Add a Prey to the scene
+    // Initiate an Agents array
     void addAgent(int nb_prey_in_array, int nb_hunt_in_array);
+
+    // Add a hunter to the scene
+    void addHunter();
+
+    // Add a prey to the scene
+    void addPrey();
 
     // Draw the content of the scene
     void draw(bwindow& win); 

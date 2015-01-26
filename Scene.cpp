@@ -113,7 +113,7 @@ void Scene::addBorder(int type, int x1, int y1, int c2)
 	}
 }
 
-// Add a Prey to the scene
+// Initiate an Agents array
 void Scene::addAgent(int nb_prey_in_array, int nb_hunt_in_array)
 {
 	if((nb_prey_in_array <= NB_MAX_PREY) && (nb_hunt_in_array <= NB_MAX_HUNT))
@@ -127,6 +127,32 @@ void Scene::addAgent(int nb_prey_in_array, int nb_hunt_in_array)
 			agents[i+nb_hunt_in_array] = new Prey((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
 		nb_prey = nb_prey_in_array;
 		nb_hunt = nb_hunt_in_array;
+	}
+}
+
+void Scene::addHunter()
+{
+	if(nb_hunt+1 <= NB_MAX_HUNT)
+	{
+		Agent** new_agents = new Agent* [(1+nb_hunt+nb_prey)];
+		memcpy(new_agents, agents, (nb_hunt+nb_prey)*sizeof(Agent*));
+		new_agents[nb_hunt+nb_prey] = new Hunter((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
+		delete [] agents;
+		agents = new_agents;
+		nb_hunt++;
+	}
+}
+
+void Scene::addPrey()
+{
+	if(nb_prey+1 <= NB_MAX_PREY)
+	{
+		Agent** new_agents = new Agent* [(1+nb_hunt+nb_prey)];
+		memcpy(new_agents, agents, (nb_hunt+nb_prey)*sizeof(Agent*));
+		new_agents[nb_hunt+nb_prey] = new Prey((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
+		delete [] agents;
+		agents = new_agents;
+		nb_prey++;
 	}
 }
 

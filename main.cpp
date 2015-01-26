@@ -73,9 +73,17 @@ int main()
 	s1->addObstacle(DefVal::NB_OBST);
 
 	// Add preys
-	s1->addAgent(175,175);
-
-
+	s1->addAgent(1,0);
+	s1->addHunter();
+	s1->addHunter();
+	s1->addPrey();
+	s1->addHunter();
+	s1->addHunter();
+	s1->addPrey();
+	s1->addHunter();
+	s1->addHunter();
+	s1->addPrey();
+	
 	// Paint loop
     for(;;)
     {
@@ -91,6 +99,7 @@ int main()
 		{
 		    case BKPRESS :
 			if(!strcmp(win.get_lastkey(), "space"))
+				// Sleep for 1s
 				usleep(1000000);
 			break;
 		}
