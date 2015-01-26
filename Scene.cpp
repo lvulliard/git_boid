@@ -162,7 +162,9 @@ void Scene::draw(bwindow& win)
 		agents[j]->move(borders, nb_borders, agents,j,N, obstacles, nb_obstacles);
 
 		// Draw the new position
-		win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),agents[j]->get_color());
+		// If the agent is not dead
+		if(agents[j]->get_state() != 1)
+			win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),agents[j]->get_color());
 	
 	}
 }

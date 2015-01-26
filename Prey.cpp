@@ -192,6 +192,12 @@ double* Prey::speed_for_hunters(double x2, double y2, double r2)
 
 	res[2] = dis;
 
+	if( dis < hitbox)
+	{
+		state = 1;
+		res[2] = -1;
+	}
+
 	return res;
 
 }

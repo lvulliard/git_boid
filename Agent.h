@@ -60,6 +60,7 @@ class Agent
     inline double get_y () const;
     inline double get_dy () const;
     inline unsigned int get_color () const;
+    inline int get_state() const;
 
     // =======================================================================
     //                            Accessors: setters
@@ -110,7 +111,8 @@ class Agent
     //                             Protected Attributes
     // =======================================================================
     //
-    unsigned int color, state;
+    unsigned int color; 
+    int state;
     // Agent view range "r"
     // Hitbox sometimes called "c"
     double x, y, dx, dy, r, hitbox;
@@ -143,6 +145,11 @@ double Agent::get_dy() const
 unsigned int Agent::get_color() const
 {
     return color;
+}
+
+int Agent::get_state() const
+{
+    return state;
 }
 
 // ===========================================================================

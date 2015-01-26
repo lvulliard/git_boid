@@ -42,6 +42,7 @@ Agent::Agent(double x, double y, double h, double r, unsigned int c)
     color = c;
     hitbox = h;
     this->r = r;
+    state = 0;
 }
 
 // ===========================================================================

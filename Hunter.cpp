@@ -100,6 +100,7 @@ void Hunter::move(Border* borders, unsigned int nb_b, Agent** tab, int index, un
 	if (dy*dy > (DefVal::MAX_HUNT_SPEED)*(DefVal::MAX_HUNT_SPEED))
 		dy /= (abs(dy)/DefVal::MAX_HUNT_SPEED);
 
+
 	x += dx;
 	y += dy;
 }

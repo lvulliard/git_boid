@@ -29,7 +29,7 @@ namespace DefVal
     const unsigned int NB_MAX_HUNT = 1000;
     const unsigned int NB_OBST = 8;
 
-    const double HUNTING_SPEED = 0.6;
+    const double HUNTING_SPEED = 0.99;
     const double BORDER_STRENGTH = 0.03;
     const double HUNTER_HITBOX = 7.0;
     const double PREY_HITBOX = 6.0;
