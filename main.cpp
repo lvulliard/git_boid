@@ -37,29 +37,6 @@ int main()
 	
     int i;
 
-    // Obj declarations
-	Prey p1(5,3);
-	Hunter h1(1,5);
-	Prey p2(6,4,20);
-	Hunter h2(2,6,60);
-
-	Border* b1 = new Border(0, 20, 20, 450, 0xBB0000);
-
-    Obstacle obs1;
-	obs1.x = 30;
-	obs1.y = 450;
-	obs1.r = 28;
-
-   	Obstacle obs2;
-	obs2.x = 300;
-	obs2.y = 450;
-	obs2.r = 10;
-
-	//printf("p1 : x %f, y %f, dx %f, dy %f, color %d\n", p1.get_x(), p1.get_y(), p1.get_dx(), p1.get_dy(), p1.get_color());
-	//printf("h1 : x %f, y %f, dx %f, dy %f, color %d\n", h1.get_x(), h1.get_y(), h1.get_dx(), h1.get_dy(), h1.get_color());
-	//printf("p2 : x %f, y %f, dx %f, dy %f, color %d\n", p2.get_x(), p2.get_y(), p2.get_dx(), p2.get_dy(), p2.get_color());
-	//printf("h2 : x %f, y %f, dx %f, dy %f, color %d\n", h2.get_x(), h2.get_y(), h2.get_dx(), h2.get_dy(), h2.get_color());
-
 	// Scene declaration
 	Scene* s1 = new Scene ();
 
@@ -72,15 +49,10 @@ int main()
 	// Add obstacle
 	s1->addObstacle(DefVal::NB_OBST);
 
-	// Add preys
-	s1->addAgent(1,0);
-	s1->addHunter();
-	s1->addHunter();
-	s1->addPrey();
-	s1->addHunter();
+	// Add agents
+	s1->addAgent(20,2);
 	s1->addHunter();
 	s1->addPrey();
-	s1->addHunter();
 	s1->addHunter();
 	s1->addPrey();
 	
@@ -139,8 +111,6 @@ int main()
 	    // End here
 
     }
-
-    delete b1;
 
     return 0;
 }

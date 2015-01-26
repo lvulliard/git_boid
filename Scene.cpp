@@ -51,7 +51,9 @@ Scene::Scene(void) : MAX_WIDTH(DefVal::WINDOW_WIDTH),
 	nb_obstacles(0),
 	agents(NULL),
 	borders(NULL),
-	obstacles(NULL)
+	obstacles(NULL),
+	pred_count(0),
+	hunt_count(0)
 {
 }
 
@@ -132,6 +134,16 @@ void Scene::addAgent(int nb_prey_in_array, int nb_hunt_in_array)
 
 void Scene::addHunter()
 {
+	/*if(nb_hunt+1 <= NB_MAX_HUNT)
+	{
+		Agent** new_agents = new Agent* [(1+nb_hunt+nb_prey)];
+		memcpy(new_agents, agents, (nb_hunt+nb_prey)*sizeof(Agent*));
+		memmove(new_agents+(nb_hunt*sizeof(Agent*)), new_agents+(nb_hunt+1)*sizeof(Agent*),nb_prey*sizeof(Agent*) );
+		new_agents[nb_hunt] = new Hunter((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
+		delete [] agents;
+		agents = new_agents;
+		nb_hunt++;
+	}*/
 	if(nb_hunt+1 <= NB_MAX_HUNT)
 	{
 		Agent** new_agents = new Agent* [(1+nb_hunt+nb_prey)];
@@ -162,6 +174,8 @@ void Scene::draw(bwindow& win)
 	int i,j;
 	// Total number of agents
 	unsigned int N = nb_prey+nb_hunt;
+	// TEST
+	int birthrate = 10*DefVal::MU;
 
 	// Draw borders
 	for(i = 0; i < nb_borders; i++){
@@ -216,6 +230,9 @@ void Scene::draw(bwindow& win)
 	std::string count_string = " preys eaten.";
 	count_string = numstr + count_string;
 	win.draw_text(50,50,0x0,count_string.c_str(),count_string.size());
+
+	pred_count++;
+	hunt_count++;
 }
 
 // Check-up function
@@ -226,7 +243,7 @@ void Scene::checkup()
 	printf("NB_BORDERS = %d; NB_MAX_PREY = %d, NB_MAX_HUNT = %d\n", NB_BORDERS, NB_MAX_PREY, NB_MAX_HUNT);
 	printf("nb_prey = %d, nb_hunt = %d, nb_borders = %d, nb_obstacles = %d\n", nb_prey, nb_hunt, nb_borders, nb_obstacles);
 	printf("Et pour les pointeurs, on a :\n");
-	//printf("%d; %d; %d", *agents, borders, obstacles);
+	printf("%d; %d; %d\n", *agents, borders, obstacles);
 }
 
 // ===========================================================================
