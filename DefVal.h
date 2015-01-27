@@ -48,6 +48,11 @@ namespace DefVal
     const double MAX_PREY_SPEED = 1.2;
     const double MAX_HUNT_SPEED = 1.1;
     const double HUNTER_DRUNKENNESS = 0.02;
+
 }
+
+// This does not exist
+extern unsigned int preys_eaten;
+
 
 #endif // __DefVal_H__

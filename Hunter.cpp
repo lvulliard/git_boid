@@ -86,6 +86,7 @@ void Hunter::move(Border* borders, unsigned int nb_b, Agent** tab, int index, un
 				if(dv[2] == -1 )
 				{
 					state = - DefVal::WAITING_STEPS * DefVal::TIME_STEP;
+					preys_eaten += 1;;
 				}
 			}
 		}

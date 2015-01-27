@@ -36,6 +36,7 @@
 // ===========================================================================
 //                         Definition of static attributes
 // ===========================================================================
+unsigned int preys_eaten = 0;
 
 // ===========================================================================
 //                                  Constructors
@@ -177,6 +178,9 @@ void Scene::draw(bwindow& win)
 	// Total number of agents
 	unsigned int N = nb_prey+nb_hunt;
 
+	// Preys eaten this step
+	preys_eaten = 0;
+
 	// Draw borders
 	for(i = 0; i < nb_borders; i++)
 	{
@@ -243,6 +247,12 @@ void Scene::draw(bwindow& win)
 	}
 
 	prey_count += birthrate;
+
+	// Hunter generation
+	for(i = 0; i< preys_eaten; i++)
+	{
+		addHunter();
+	}
 }
 
 // Check-up function
