@@ -52,7 +52,7 @@ Scene::Scene(void) : MAX_WIDTH(DefVal::WINDOW_WIDTH),
 	agents(NULL),
 	borders(NULL),
 	obstacles(NULL),
-	pred_count(0),
+	prey_count(0),
 	hunt_count(0)
 {
 }
@@ -130,6 +130,8 @@ void Scene::addAgent(int nb_prey_in_array, int nb_hunt_in_array)
 		nb_prey = nb_prey_in_array;
 		nb_hunt = nb_hunt_in_array;
 	}
+
+	prey_count = nb_prey_in_array;
 }
 
 void Scene::addHunter()
@@ -174,14 +176,6 @@ void Scene::draw(bwindow& win)
 	int i,j;
 	// Total number of agents
 	unsigned int N = nb_prey+nb_hunt;
-	// TEST
-	int birthrate = round(nb_prey*DefVal::MU);
-
-	if((pred_count % birthrate) == 0)
-	{
-		pred_count = 0;
-		addPrey();
-	}
 
 	// Draw borders
 	for(i = 0; i < nb_borders; i++)
@@ -238,8 +232,17 @@ void Scene::draw(bwindow& win)
 	count_string = numstr + count_string;
 	win.draw_text(50,50,0x0,count_string.c_str(),count_string.size());
 
-	pred_count++;
-	hunt_count++;
+	// Prey generation
+	double birthrate = (nb_prey-count_deads)*DefVal::MU*(1 - ((nb_prey-count_deads)/DefVal::NB_LIM_PREY));
+	int dn = round(prey_count+birthrate) - round(prey_count);
+
+	if(dn)
+	{
+		for(i=0; i<dn; i++)
+			addPrey();
+	}
+
+	prey_count += birthrate;
 }
 
 // Check-up function
