@@ -50,7 +50,7 @@ int main()
 	s1->addObstacle(DefVal::NB_OBST);
 
 	// Add agents
-	s1->addAgent(150,20);
+	s1->addAgent(100,75);
 	//s1->addHunter();
 	//s1->addPrey();
 	//s1->addHunter();

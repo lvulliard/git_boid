@@ -65,6 +65,11 @@ Scene::Scene(void) : MAX_WIDTH(DefVal::WINDOW_WIDTH),
 // ===========================================================================
 Scene::~Scene(void)
 {
+	for(int i = 0; i < (NB_MAX_PREY+NB_MAX_HUNT); i++)
+		delete [] agents[i];
+	delete [] agents;
+	delete [] borders;
+	delete [] obstacles;
 }
 
 // ===========================================================================
@@ -124,7 +129,7 @@ void Scene::addAgent(int nb_prey_in_array, int nb_hunt_in_array)
 	if((nb_prey_in_array <= NB_MAX_PREY) && (nb_hunt_in_array <= NB_MAX_HUNT))
 	{
 		delete agents;
-		agents = new Agent* [(nb_prey_in_array+nb_hunt_in_array)];
+		agents = new Agent* [(NB_MAX_PREY+NB_MAX_HUNT)];
 		int i;
 		for(i=0; i<nb_hunt_in_array; i++)
 			agents[i] = new Hunter((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
@@ -151,11 +156,7 @@ void Scene::addHunter()
 	}*/
 	if(nb_hunt+1 <= NB_MAX_HUNT)
 	{
-		Agent** new_agents = new Agent* [(1+nb_hunt+nb_prey)];
-		memcpy(new_agents, agents, (nb_hunt+nb_prey)*sizeof(Agent*));
-		new_agents[nb_hunt+nb_prey] = new Hunter((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
-		delete [] agents;
-		agents = new_agents;
+		agents[nb_hunt+nb_prey] = new Hunter((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
 		nb_hunt++;
 	}
 }
@@ -164,11 +165,7 @@ void Scene::addPrey()
 {
 	if(nb_prey+1 <= NB_MAX_PREY)
 	{
-		Agent** new_agents = new Agent* [(1+nb_hunt+nb_prey)];
-		memcpy(new_agents, agents, (nb_hunt+nb_prey)*sizeof(Agent*));
-		new_agents[nb_hunt+nb_prey] = new Prey((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
-		delete [] agents;
-		agents = new_agents;
+		agents[nb_hunt+nb_prey] = new Prey((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
 		nb_prey++;
 	}
 }
