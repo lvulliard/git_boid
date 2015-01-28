@@ -124,15 +124,19 @@ double* Hunter::speed_for_preys(double x2, double y2, double dx2, double dy2, do
 	res[1] = 0;
 	res[2] = 2;
 
-	double dis = sqrt((x-x2)*(x-x2) + (y - y2)*(y-y2));
-
-	if( dis < r2)
+	// if hunter is alive
+	if(state != 2)
 	{
-		res[0] = - ((x - x2) * DefVal::GAMMA4) / dis;
-		res[1] = - ((y - y2) * DefVal::GAMMA4) / dis;
+		double dis = sqrt((x-x2)*(x-x2) + (y - y2)*(y-y2));
+
+		if( dis < r2)
+		{
+			res[0] = - ((x - x2) * DefVal::GAMMA4) / dis;
+			res[1] = - ((y - y2) * DefVal::GAMMA4) / dis;
+		}
 	}
 
-	return res;
+	return res;		
 
 }
 

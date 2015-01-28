@@ -51,7 +51,7 @@ int main()
 	s1->addObstacle(DefVal::NB_OBST);
 
 	// Add agents
-	s1->addAgent(100,75);
+	s1->addAgent(20,20);
 	
 	// Paint loop
     for(;;)
