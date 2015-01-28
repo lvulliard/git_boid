@@ -30,12 +30,13 @@
 
 int main()
 {
+	// Seed for the random variables
 	srand (time (NULL));
+
+	// Window set-up
     bwindow win(DefVal::WINDOW_WIDTH,DefVal::WINDOW_HEIGHT);
     printf("%d\n",win.init());
     win.map();
-	
-    int i;
 
 	// Scene declaration
 	Scene* s1 = new Scene ();
@@ -51,10 +52,6 @@ int main()
 
 	// Add agents
 	s1->addAgent(100,75);
-	//s1->addHunter();
-	//s1->addPrey();
-	//s1->addHunter();
-	//s1->addPrey();
 	
 	// Paint loop
     for(;;)
@@ -75,40 +72,6 @@ int main()
 				usleep(1000000);
 			break;
 		}
-
-		/*win.draw_line(100,100,200,200,0xFF0000);
-		win.draw_text(10,10,0x0,"Hello World",strlen("Hello World"));
-		win.draw_square(200,200,220,220,0xFF00);
-		win.draw_fsquare(400,400,440,440,0xFF00);*/
-
-	    
-	    // This script will be the method used to draw a border
-	    // Begin here
-	    
-	    /*int* bordPoints = new int [4];
-	    bordPoints = b1->get_points();
-	    win.draw_line(bordPoints[0], bordPoints[1], bordPoints[2], bordPoints[3], b1->get_color());
-		delete bordPoints;*/
-
-	    // End here
-
-	    // This script will be the method used to draw an obstacle
-	    // Begin here
-		/*for(i=0; i<360; i += round(300/obs1.r))
-		{
-			win.draw_point(round(obs1.x +(obs1.r)*cos(i*0.017453)), round(obs1.y + (obs1.r)*sin(i*0.017453)), 0);
-		}*/
-
-	    // End here
-
-	    // This script will be the method used to draw an obstacle
-	    // Begin here
-		/*for(i=0; i<360; i += round(300/obs2.r))
-		{
-			win.draw_point(round(obs2.x +(obs2.r)*cos(i*0.017453)), round(obs2.y + (obs2.r)*sin(i*0.017453)), 0);
-		}*/
-
-	    // End here
 
     }
 

@@ -86,7 +86,6 @@ void Scene::addObstacle(double x, double y, double r)
 	new_obstacles[nb_obstacles-1].r = r;
 	delete [] obstacles;
 	obstacles = new_obstacles;
-
 }
 
 // Add random obstacles to the scene
@@ -129,6 +128,7 @@ void Scene::addAgent(int nb_prey_in_array, int nb_hunt_in_array)
 	if((nb_prey_in_array <= NB_MAX_PREY) && (nb_hunt_in_array <= NB_MAX_HUNT))
 	{
 		delete agents;
+		// Max size to avoid array copies
 		agents = new Agent* [(NB_MAX_PREY+NB_MAX_HUNT)];
 		int i;
 		for(i=0; i<nb_hunt_in_array; i++)
@@ -144,16 +144,6 @@ void Scene::addAgent(int nb_prey_in_array, int nb_hunt_in_array)
 
 void Scene::addHunter()
 {
-	/*if(nb_hunt+1 <= NB_MAX_HUNT)
-	{
-		Agent** new_agents = new Agent* [(1+nb_hunt+nb_prey)];
-		memcpy(new_agents, agents, (nb_hunt+nb_prey)*sizeof(Agent*));
-		memmove(new_agents+(nb_hunt*sizeof(Agent*)), new_agents+(nb_hunt+1)*sizeof(Agent*),nb_prey*sizeof(Agent*) );
-		new_agents[nb_hunt] = new Hunter((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
-		delete [] agents;
-		agents = new_agents;
-		nb_hunt++;
-	}*/
 	if(nb_hunt+1 <= NB_MAX_HUNT)
 	{
 		agents[nb_hunt+nb_prey] = new Hunter((int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_WIDTH), (int)round(((float)rand()/RAND_MAX)*DefVal::WINDOW_HEIGHT));
@@ -247,7 +237,8 @@ void Scene::draw(bwindow& win)
 		}
 	}
 
-	// enough to hold all numbers up to 64-bits
+	// Counters and texts
+	// Enough to hold all numbers up to 64-bits
 	char numstr[21]; 
 	sprintf(numstr, "%d", count_deads);
 	std::string count_string = " preys eaten.";
@@ -291,7 +282,6 @@ void Scene::draw(bwindow& win)
 	}
 
 	hunt_count += deathrate;
-
 
 	// Hunter generation
 	for(i = 0; i< preys_eaten; i++)
