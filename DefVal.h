@@ -25,11 +25,11 @@ namespace DefVal
     const unsigned int WINDOW_WIDTH = 1000;
     const unsigned int WINDOW_HEIGHT = 600;
     const unsigned int NB_BORDERS = 4;
-    const unsigned int NB_LIM_PREY = 80;
+    const unsigned int NB_LIM_PREY = 100;
     const unsigned int NB_MAX_PREY = 160;
     const unsigned int NB_MAX_HUNT = 160;
     const unsigned int NB_OBST = 10;
-    const unsigned int TIME_STEP = 9000;
+    const unsigned int TIME_STEP = 10000;
     const unsigned int WAITING_STEPS = 200;
 
     const double HUNTING_SPEED = 0.99;

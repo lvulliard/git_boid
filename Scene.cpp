@@ -255,12 +255,15 @@ void Scene::draw(bwindow& win)
 	sprintf(numstr, "%d", count_deads);
 	std::string count_string = " preys eaten.";
 	count_string = numstr + count_string;
-	win.draw_text(50,50,0x0,count_string.c_str(),count_string.size());
+	win.draw_text(40,40,0x0,count_string.c_str(),count_string.size());
 
 	sprintf(numstr, "%d", (int)round(hunt_count));
 	count_string = " dead hunters.";
 	count_string = numstr + count_string;
-	win.draw_text(DefVal::WINDOW_WIDTH-150,50,0x0,count_string.c_str(),count_string.size());
+	win.draw_text(DefVal::WINDOW_WIDTH-140,40,0x0,count_string.c_str(),count_string.size());
+
+	if((nb_hunt == (int)round(hunt_count)) || (nb_hunt == DefVal::NB_MAX_HUNT) || (nb_prey == DefVal::NB_MAX_PREY))
+		win.draw_text(DefVal::WINDOW_WIDTH-95, DefVal::WINDOW_HEIGHT-40,0xFF0000, "THE END!", strlen("THE END!"));
 
 	// Prey generation
 	double birthrate = (nb_prey-count_deads)*DefVal::MU*(1 - ((nb_prey-count_deads)/DefVal::NB_LIM_PREY));
