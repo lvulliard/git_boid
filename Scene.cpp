@@ -225,7 +225,7 @@ void Scene::draw(bwindow& win)
 		}
 		else
 		{
-			if(state = 1)
+			if(state == 1)
 				count_deads++;
 		}
 	}
