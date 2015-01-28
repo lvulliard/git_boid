@@ -54,7 +54,8 @@ Scene::Scene(void) : MAX_WIDTH(DefVal::WINDOW_WIDTH),
 	borders(NULL),
 	obstacles(NULL),
 	prey_count(0),
-	hunt_count(0)
+	hunt_count(0),
+	dead_hunters(0)
 {
 }
 
@@ -230,11 +231,17 @@ void Scene::draw(bwindow& win)
 		}
 	}
 
-	char numstr[21]; // enough to hold all numbers up to 64-bits
+	// enough to hold all numbers up to 64-bits
+	char numstr[21]; 
 	sprintf(numstr, "%d", count_deads);
 	std::string count_string = " preys eaten.";
 	count_string = numstr + count_string;
 	win.draw_text(50,50,0x0,count_string.c_str(),count_string.size());
+
+	sprintf(numstr, "%d", (int)round(hunt_count));
+	count_string = " dead hunters.";
+	count_string = numstr + count_string;
+	win.draw_text(DefVal::WINDOW_WIDTH-150,50,0x0,count_string.c_str(),count_string.size());
 
 	// Prey generation
 	double birthrate = (nb_prey-count_deads)*DefVal::MU*(1 - ((nb_prey-count_deads)/DefVal::NB_LIM_PREY));
@@ -247,6 +254,19 @@ void Scene::draw(bwindow& win)
 	}
 
 	prey_count += birthrate;
+
+	// Hunter decay
+	double deathrate = DefVal::MU2*(nb_hunt - dead_hunters);
+	int dp = round(hunt_count+deathrate) - round(deathrate);
+
+	if(dn)
+	{
+		for(i=0; i<dn; i++);
+			//printf("BOUM !\n");
+	}
+
+	hunt_count += deathrate;
+
 
 	// Hunter generation
 	for(i = 0; i< preys_eaten; i++)

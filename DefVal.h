@@ -45,6 +45,7 @@ namespace DefVal
     const double GAMMA3o = 0.016;
     const double GAMMA4 = 0.07;
     const double MU = 0.002;
+    const double MU2 = 0.001;
     const double MAX_PREY_SPEED = 1.2;
     const double MAX_HUNT_SPEED = 1.1;
     const double HUNTER_DRUNKENNESS = 0.02;

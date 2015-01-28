@@ -128,7 +128,7 @@ class Scene
     // Constants
     const unsigned int MAX_WIDTH, MAX_HEIGHT, NB_BORDERS, NB_MAX_PREY, NB_MAX_HUNT;
     // Parameters
-    unsigned int nb_prey, nb_borders, nb_hunt, nb_obstacles;
+    unsigned int nb_prey, nb_borders, nb_hunt, nb_obstacles, dead_hunters;
     // Birth speed
     double prey_count, hunt_count;
     // Objects
