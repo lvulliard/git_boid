@@ -90,8 +90,8 @@ void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsi
 
 					// If hunter
 					case 2 :
-					dx += dv[0];
-					dy += dv[1];
+					ndx += dv[0];
+					ndy += dv[1];
 					break;
 				}
 			}
@@ -102,13 +102,13 @@ void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsi
 	// Compute new speeds
 	if(k1 != 0)
 	{
-		dx += (dvx1 / (double) k1); 
-		dy += (dvy1 / (double) k1);	 
+		ndx += (dvx1 / (double) k1); 
+		ndy += (dvy1 / (double) k1);	 
 	}
 	if(k2 != 0)
 	{
-		dx += (dvx2 / (double) k2); 
-		dy += (dvy2 / (double) k2); 
+		ndx += (dvx2 / (double) k2); 
+		ndy += (dvy2 / (double) k2); 
 	}
 
 	// Obstacles
@@ -116,20 +116,16 @@ void Prey::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsi
 		if( ( (obs[i].x - x)*(obs[i].x - x) + (obs[i].y - y)*(obs[i].y - y) )  < (hitbox+obs[i].r)*(hitbox+obs[i].r))
 		{
 			// V3
-			dx += - DefVal::GAMMA3o * (obs[i].x - x);
-			dy += - DefVal::GAMMA3o * (obs[i].y - y);
+			ndx += - DefVal::GAMMA3o * (obs[i].x - x);
+			ndy += - DefVal::GAMMA3o * (obs[i].y - y);
 		}
 
 
 	// Max speed
-	if (dx*dx > (DefVal::MAX_PREY_SPEED)*(DefVal::MAX_PREY_SPEED))
-		dx /= (abs(dx)/DefVal::MAX_PREY_SPEED);
-	if (dy*dy > (DefVal::MAX_PREY_SPEED)*(DefVal::MAX_PREY_SPEED))
-		dy /= (abs(dy)/DefVal::MAX_PREY_SPEED);
-
-	// Move
-	x += dx;
-	y += dy;
+	if (ndx*ndx > (DefVal::MAX_PREY_SPEED)*(DefVal::MAX_PREY_SPEED))
+		ndx /= (abs(ndx)/DefVal::MAX_PREY_SPEED);
+	if (ndy*ndy > (DefVal::MAX_PREY_SPEED)*(DefVal::MAX_PREY_SPEED))
+		ndy /= (abs(ndy)/DefVal::MAX_PREY_SPEED);
 }
 
 double* Prey::speed_for_preys(double x2, double y2, double dx2, double dy2, double r2)

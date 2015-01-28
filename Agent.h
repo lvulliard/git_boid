@@ -77,6 +77,7 @@ class Agent
     virtual double* speed_for_preys(double x2, double y2, double dx2, double dy2, double r2) = 0;
     virtual double* speed_for_hunters(double x2, double y2, double r2) = 0;
     double speed_from_borders(Border* borders, unsigned int nb);
+    void update_pos();
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -115,7 +116,7 @@ class Agent
     int state;
     // Agent view range "r"
     // Hitbox sometimes called "c"
-    double x, y, dx, dy, r, hitbox;
+    double x, y, dx, dy, ndx, ndy, r, hitbox;
 };
 
 

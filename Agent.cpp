@@ -43,6 +43,8 @@ Agent::Agent(double x, double y, double h, double r, unsigned int c)
     hitbox = h;
     this->r = r;
     state = 0;
+    ndx = dx;
+    ndy = dy;
 }
 
 // ===========================================================================
@@ -67,7 +69,7 @@ double Agent::speed_from_borders(Border* borders, unsigned int nb)
 				// If above upper border
 				if(y > (borders[i].get_points())[1] ) 
 					// Go progressively downward
-					dy -= DefVal::BORDER_STRENGTH;
+					ndy -= DefVal::BORDER_STRENGTH;
 				break;
 
 			// Lower border
@@ -75,7 +77,7 @@ double Agent::speed_from_borders(Border* borders, unsigned int nb)
 				// If below lower border
 				if(y <  (borders[i].get_points())[1] )
 					// Go progressively upward
-					dy += DefVal::BORDER_STRENGTH;
+					ndy += DefVal::BORDER_STRENGTH;
 				break;
 
 			// right border
@@ -83,7 +85,7 @@ double Agent::speed_from_borders(Border* borders, unsigned int nb)
 				// If left to the right border
 				if(x >  (borders[i].get_points())[0] )
 					// Go progressively left
-					dx -= DefVal::BORDER_STRENGTH;
+					ndx -= DefVal::BORDER_STRENGTH;
 				break;
 
 			// left border
@@ -91,10 +93,18 @@ double Agent::speed_from_borders(Border* borders, unsigned int nb)
 				// If right to the left border
 				if(x < (borders[i].get_points())[0] )
 					// Go progressively right
-					dx += DefVal::BORDER_STRENGTH;
+					ndx += DefVal::BORDER_STRENGTH;
 				break;
 		}
 	}
+}
+
+void Agent::update_pos()
+{
+	dx = ndx;
+	dy = ndy;
+	x = x + dx;
+	y = y + dy;
 }
 // ===========================================================================
 //                                Protected Methods

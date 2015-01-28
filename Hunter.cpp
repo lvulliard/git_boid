@@ -69,8 +69,8 @@ void Hunter::move(Border* borders, unsigned int nb_b, Agent** tab, int index, un
 	speed_from_borders(borders, nb_b);
 
 	// Isotropic motion
-	dx += DefVal::HUNTER_DRUNKENNESS * pow(-1,round((float)rand()/RAND_MAX))*((float)rand()/RAND_MAX);
-	dy += DefVal::HUNTER_DRUNKENNESS * pow(-1,round((float)rand()/RAND_MAX))*((float)rand()/RAND_MAX);
+	ndx += DefVal::HUNTER_DRUNKENNESS * pow(-1,round((float)rand()/RAND_MAX))*((float)rand()/RAND_MAX);
+	ndy += DefVal::HUNTER_DRUNKENNESS * pow(-1,round((float)rand()/RAND_MAX))*((float)rand()/RAND_MAX);
 
 	int i;
 
@@ -86,8 +86,8 @@ void Hunter::move(Border* borders, unsigned int nb_b, Agent** tab, int index, un
 			dv = tab[i]->speed_for_hunters(x,y,r);
 			if( (dv[0]!=0) || (dv[1]!= 0) ){
 				if(dv[2] < min_dist)
-				dx = dv[0];
-				dy = dv[1];	
+				ndx = dv[0];
+				ndy = dv[1];	
 				min_dist = dv[2];
 				
 				// If hunter just ate
@@ -105,19 +105,15 @@ void Hunter::move(Border* borders, unsigned int nb_b, Agent** tab, int index, un
 		if( ( (obs[i].x - x)*(obs[i].x - x) + (obs[i].y - y)*(obs[i].y - y) )  < (hitbox+obs[i].r)*(hitbox+obs[i].r))
 		{
 			// V3
-			dx += - DefVal::GAMMA3o * (obs[i].x - x);
-			dy += - DefVal::GAMMA3o * (obs[i].y - y);
+			ndx += - DefVal::GAMMA3o * (obs[i].x - x);
+			ndy += - DefVal::GAMMA3o * (obs[i].y - y);
 		}
 
 	// Max speed
-	if (dx*dx > (DefVal::MAX_HUNT_SPEED)*(DefVal::MAX_HUNT_SPEED))
-		dx /= (abs(dx)/DefVal::MAX_HUNT_SPEED);
+	if (ndx*ndx > (DefVal::MAX_HUNT_SPEED)*(DefVal::MAX_HUNT_SPEED))
+		ndx /= (abs(ndx)/DefVal::MAX_HUNT_SPEED);
 	if (dy*dy > (DefVal::MAX_HUNT_SPEED)*(DefVal::MAX_HUNT_SPEED))
-		dy /= (abs(dy)/DefVal::MAX_HUNT_SPEED);
-
-
-	x += dx;
-	y += dy;
+		ndy /= (abs(ndy)/DefVal::MAX_HUNT_SPEED);
 }
 
 double* Hunter::speed_for_preys(double x2, double y2, double dx2, double dy2, double r2)

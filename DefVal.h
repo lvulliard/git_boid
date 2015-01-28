@@ -29,7 +29,7 @@ namespace DefVal
     const unsigned int NB_MAX_PREY = 160;
     const unsigned int NB_MAX_HUNT = 160;
     const unsigned int NB_OBST = 10;
-    const unsigned int TIME_STEP = 7500;
+    const unsigned int TIME_STEP = 9000;
     const unsigned int WAITING_STEPS = 200;
 
     const double HUNTING_SPEED = 0.99;
@@ -44,7 +44,7 @@ namespace DefVal
     const double GAMMA3 = 0.05;
     const double GAMMA3o = 0.016;
     const double GAMMA4 = 0.07;
-    const double MU = 0.002;
+    const double MU = 0.0014;
     const double MU2 = 0.001;
     const double MAX_PREY_SPEED = 1.2;
     const double MAX_HUNT_SPEED = 1.1;

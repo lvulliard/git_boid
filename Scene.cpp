@@ -203,7 +203,7 @@ void Scene::draw(bwindow& win)
 	}
 
 	int count_deads = 0;
-	// Draw agents
+	// Compute new positions and count
 	for(j=0; j<(N); j++)
 	{
 		// State of the agent (has eaten, is alive or dead)
@@ -222,14 +222,31 @@ void Scene::draw(bwindow& win)
 				// Wait for the time to be spent
 				agents[j]->wait();
 			}
-
-			// Draw the new position
-			win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),agents[j]->get_color());
 		}
 		else
 		{
 			if(state = 1)
 				count_deads++;
+		}
+	}
+
+	// Update position and draw
+	for(j=0; j<(N); j++)
+	{
+		// State of the agent (has eaten, is alive or dead)
+		int state = agents[j]->get_state();
+
+		// If the agent is not dead
+		if(state < 1)
+		{
+			if(state >= 0)
+			{
+				// Move the agent
+				agents[j]->update_pos();
+			}
+
+			// Draw the new position
+			win.draw_fsquare(round(agents[j]->get_x()-1),round(agents[j]->get_y()-1),round(agents[j]->get_x()+1),round(agents[j]->get_y()+1),agents[j]->get_color());
 		}
 	}
 
