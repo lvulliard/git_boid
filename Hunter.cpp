@@ -57,6 +57,14 @@ Hunter::~Hunter(void)
 // ===========================================================================
 void Hunter::move(Border* borders, unsigned int nb_b, Agent** tab, int index, unsigned int nb_a, Obstacle* obs, unsigned int nb_o)
 {
+	// If a hunter has to die
+	if(hunters_killed)
+	{
+		state = 2;
+		hunters_killed--;
+	}
+
+
 	// Wind
 	speed_from_borders(borders, nb_b);
 

@@ -37,6 +37,7 @@
 //                         Definition of static attributes
 // ===========================================================================
 unsigned int preys_eaten = 0;
+unsigned int hunters_killed = 0;
 
 // ===========================================================================
 //                                  Constructors
@@ -209,7 +210,7 @@ void Scene::draw(bwindow& win)
 		int state = agents[j]->get_state();
 
 		// If the agent is not dead
-		if(state != 1)
+		if(state < 1)
 		{
 			if(state >= 0)
 			{
@@ -227,7 +228,8 @@ void Scene::draw(bwindow& win)
 		}
 		else
 		{
-			count_deads++;
+			if(state = 1)
+				count_deads++;
 		}
 	}
 
@@ -256,13 +258,19 @@ void Scene::draw(bwindow& win)
 	prey_count += birthrate;
 
 	// Hunter decay
-	double deathrate = DefVal::MU2*(nb_hunt - dead_hunters);
-	int dp = round(hunt_count+deathrate) - round(deathrate);
+	double deathrate = DefVal::MU2*(nb_hunt - round(hunt_count));
+	if (deathrate < 0)
+		deathrate = 0;
+	int dp = round(hunt_count+deathrate) - round(hunt_count);
 
-	if(dn)
+	if(dp)
 	{
 		for(i=0; i<dn; i++);
-			//printf("BOUM !\n");
+		{
+			hunters_killed++;
+			dead_hunters++;
+		}
+			
 	}
 
 	hunt_count += deathrate;
@@ -273,6 +281,7 @@ void Scene::draw(bwindow& win)
 	{
 		addHunter();
 	}
+
 }
 
 // Check-up function

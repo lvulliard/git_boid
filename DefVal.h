@@ -54,6 +54,7 @@ namespace DefVal
 
 // This does not exist
 extern unsigned int preys_eaten;
+extern unsigned int hunters_killed;
 
 
 #endif // __DefVal_H__
